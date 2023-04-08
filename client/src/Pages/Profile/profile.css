@@ -1,0 +1,122 @@
+.profile {
+    background: #f8f9fd;
+    padding: 1px 0px 24px 0px;    
+}
+
+.profile-detail {
+    border: solid 1px darkgray;
+    background: white;
+}
+
+.profile-image {
+    width: 100% !important;
+    border-radius: 5px;
+}
+
+.profile-image-frame {
+    margin: 12px;
+}
+
+.profile-detail-content {
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 27px);
+}
+
+.profile-detail-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.profile-row {
+    margin-top: 4px;
+}
+
+.profile span {
+    font-size: 15px;
+    font-weight: 600;
+    margin-right: 6px;
+}
+
+.profile-actions {
+    margin-top: auto;
+}
+
+.profile-action {
+    padding: 4px 18px;
+    font-size: 13px;
+    margin-left: 3px;
+    background: transparent;
+    border: solid 1px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.btn-edit-profile {
+    /* background: green; */
+    border: solid 1px rgb(17, 80, 17);
+    color: rgb(17, 80, 17);
+}
+
+.btn-edit-profile:hover {
+    background: rgb(17, 80, 17);
+    color: white;
+}
+
+.btn-change-password {
+    border: solid 1px brown;
+    color: brown;
+}
+
+.btn-change-password:hover {
+    background: brown;
+    color: white;
+}
+
+.purchase-history-title {
+    font-size: 23px;
+    font-weight: 600;
+    margin-top: 24px;
+    margin-bottom: 12px;
+}
+
+.profile .table-wrap {
+    /* overflow-x: scroll; */
+    /* box-shadow: 0px 1px 4px 0px grey; */
+}
+
+.profile .table {
+    /* min-width: 1000px !important; */
+    width: 100%;
+    background: #fff;
+    -webkit-box-shadow: 0px 5px 12px -12px rgb(0 0 0 / 29%);
+    -moz-box-shadow: 0px 5px 12px -12px rgba(0, 0, 0, 0.29);
+    box-shadow: 0px 5px 12px -12px rgb(0 0 0 / 29%);
+}
+
+.profile .table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    /* border: solid 1px gray; */
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.profile .table thead.thead-primary {
+    background: #666666;
+    box-shadow: 0px 0px 4px 0px grey;
+}
+
+.alert {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 1rem;
+    /* border: 1px solid transparent; */
+    /* border-radius: 0.25rem; */
+}

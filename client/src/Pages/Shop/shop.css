@@ -1,0 +1,202 @@
+.products-top-bar {
+    background-color: #ECE8E8;
+    margin: 12px 0px 6px 0px;
+    align-items: center;
+}
+
+.products-by-gender {
+    text-transform: uppercase;
+}
+
+.gender-option {
+    cursor: pointer;
+    margin: 0px 15px;
+}
+
+.hidden-check {
+    display: none;
+}
+
+.gender-check:checked+.gender-option {
+    color: darkblue;
+    font-weight: 600;
+    text-decoration: underline 2px;
+}
+
+.products-search {
+    border-radius: 5px;
+    overflow: hidden;
+    border: solid 1px gray;
+    margin: 9px;
+}
+
+.products-search-form {
+    width: 84%;
+}
+
+.products-search-form input {
+    outline: none;
+}
+
+.btn-products-search {
+    margin: 2px;
+    border-radius: 3px;
+    padding: 0;
+    width: 16%;
+    color: white;
+    background: #27703ab5;
+    /* border: solid 1px gray; */
+    border: none;
+    transition: 0.4s;
+}
+
+.btn-products-search:hover {
+    cursor: pointer;
+    background: green;
+}
+
+input#inputProductsSearch {
+    height: 100%;
+    width: 100%;
+    font-size: 17px;
+    margin: 0;
+    padding: 5px;
+    border: none;
+}
+
+.products-filter {
+    position: relative;
+}
+
+.products-filter-btn-frame {
+    top: -57px;
+    right: 0;
+    position: absolute;
+}
+
+.products-filter-options-frame {
+    overflow: hidden;
+}
+
+.filter-check:checked+.products-filter-options-frame .products-filter-options {
+    margin-top: -240px;
+    margin-top: 15px;
+    height: auto;
+    visibility: visible;
+    animation-name: filter-down;
+    animation-duration: 0.4s;
+}
+
+@keyframes filter-down {
+    from {
+        transform: translateY(-240px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 230px
+    }
+
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.products-filter-btn {
+    margin-right: 12px;
+    color: gray;
+    border: solid 1px gray;
+    border-radius: 3px;
+    font-size: 18px;
+    padding: 4px 12px;
+}
+
+.products-filter-options {
+    visibility: hidden;
+    height: 0;
+    padding: 0px 10px;
+    position: relative;
+    background: #ece8e8;
+    margin-bottom: 6px;
+    animation-name: filter-up;
+    animation-duration: 0.4s;
+}
+
+.filter-polygon {
+    right: 32px;
+    top: -15px;
+    position: absolute;
+    border-left: 17px solid transparent;
+    border-right: 17px solid transparent;
+    border-bottom: solid 18px #ece8e8;
+}
+
+.options-group {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 12px;
+}
+
+.options-group-title {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.products-option {
+    margin: 0px 0px 6px 0px;
+}
+
+.products-check:checked+.products-option {
+    color: darkblue;
+    font-weight: 600;
+    text-decoration: underline 2px;
+}
+
+@keyframes filter-up {
+    from {
+        transform: translateY(0px);
+    }
+
+    to {
+        transform: translateY(-240px);
+    }
+
+    from {
+        height: 230px;
+    }
+
+    to {
+        height: 0
+    }
+
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}
+
+.justify-center {
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-wrap {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+

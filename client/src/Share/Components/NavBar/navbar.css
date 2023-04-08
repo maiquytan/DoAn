@@ -1,0 +1,136 @@
+.navbar {
+  position: absolute;
+  border-bottom: solid 1px #bc6e70;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: white;
+}
+
+.logo {
+  background-image: url('./../../../../public/assets/images/bigby-logo.png');
+  background-position: inherit;
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 67px;
+}
+
+.left-navbar {
+  width: 50%;
+}
+
+.right-navbar {
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: right;
+}
+
+.nav-items {
+  display: flex;
+  /* margin: 0; */
+  /* padding: 0; */
+  margin-right: calc(0% - 10px)
+}
+
+.nav-items li {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  padding: 0;
+}
+
+.nav-item.active a {
+  color: #b73737;
+  font-weight: 600;
+}
+
+.nav-item a {
+  padding: 0px 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.cart-open {
+  position: relative;
+}
+
+.cart-open .cart-count {
+  top: 0;
+  right: 0;
+  position: absolute;
+  background-color: #b73737;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  transform: translate(50%, -10%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-count span {
+  font-size: 12px;
+  color: white;
+}
+
+.dropdown-login {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  padding: 12px;
+  width: auto;
+  box-shadow: 1px 1px 1px 1px gray;
+}
+
+.dropdown-login.dropdown {
+  display: block;
+
+}
+.dropdown-login ul{
+  width: max-content;
+}
+
+/* li.nav-item i{
+  min-width: 35px;
+  min-height: 35px;
+} */
+
+.dropdown-login.dropdown a {
+  text-decoration: none;
+  text-transform: none;
+  font-size: 16px;
+  padding: 0;
+}
+
+.dropdown-login.dropdown li {
+  padding: 6px 12px;
+}
+
+.logout-btn {
+  padding: 6px 12px;
+  text-align: center;
+  justify-content: center;
+  background-color: brown;
+  cursor: pointer;
+  color: white;
+}
+
+.nav-login-btn {
+  min-width: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-login-btn a {
+  color: darkblue;
+  text-decoration: none;
+}

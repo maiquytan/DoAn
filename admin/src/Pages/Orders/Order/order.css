@@ -1,0 +1,15 @@
+.table-client-name img{
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    margin-right: 6px;
+}
+
+.table-client-name .row{
+    display: flex;
+    align-items: center;
+}
+
+.table-actions a {
+    text-decoration: none;
+}

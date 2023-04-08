@@ -1,0 +1,54 @@
+.news-letter {
+    background: linear-gradient(0deg, rgb(244, 241, 233), rgb(244, 241, 233)), rgb(255, 255, 255);
+}
+
+.news-letter-wrap {
+    margin: 100px 0 100px 0;
+    text-align: center;
+    width: 50%;
+}
+
+.letter-title {
+    font-size: 60px;
+    margin: 10px 0px 10px 0px;
+}
+
+.letter-des {
+    font-size: 23px;
+    font-weight: 600;
+    color: #a88b8b;
+}
+
+.form-inline {
+    display: flex;
+    flex-direction: row;
+}
+
+.form-letter {
+    width: 80%;
+}
+
+.letter-form {
+    width: 100%;
+    height: 100%;
+    padding: 0px 6px 0px 6px;
+    font-size: 15px;
+    border: solid 1px gray;
+}
+
+.btn-letter {
+    width: 20%;
+    padding: 0;
+    height: 38px;
+    background: #619a61;
+    box-shadow: unset;
+    border: solid 1px gray;
+    color: white;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.inputLetter:focus {
+    outline-offset: 0px;
+    outline: unset;
+}

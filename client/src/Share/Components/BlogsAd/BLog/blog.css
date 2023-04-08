@@ -1,0 +1,36 @@
+.blog {
+    padding: 0 12px;
+    margin: 12px 0px;
+}
+.blog img {
+    width: 100%;
+}
+
+.blog-image {
+    height: 260px;
+    background-size: cover !important;
+    background-position: center !important;
+}
+
+.blog-date {
+    margin: 15px 0px 0px 0px;
+    font-size: 14px;
+    font-style: italic;
+    color: gray;
+}
+
+.blog-title {
+    margin: 5px 0px 0px 0px;
+    font-family: monospace;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+}
+
+.blog-description {
+    margin: 5px 0px 0px 0px;
+    font-size: 15px;
+    color: #454444;
+}

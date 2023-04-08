@@ -1,0 +1,87 @@
+.purchase-history .table tbody tr {
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 2px 0px #aaa9a9;
+}
+
+.purchase-history .table tbody th,
+.purchase-history .table tbody td {
+    border: none;
+    padding: 12px;
+    font-size: 14px;
+    background: #fff;
+    border-bottom: 4px solid #f8f9fd;
+    vertical-align: middle;
+
+}
+
+.purchase-history .table tbody td .img {
+    width: 100px;
+    height: 80px;
+}
+
+.purchase-history .table tbody td .img {
+    width: 100px;
+    height: 80px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.purchase-history .table tbody td.quantity {
+    width: 10%;
+}
+
+.purchase-history .table thead th {
+    border: none;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+    text-align: left;
+}
+
+.purchase-history .table tbody td .close span {
+    font-size: 12px;
+    color: #dc3545;
+}
+
+.purchase-history button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+.purchase-history .table thead.thead-primary {
+    background: #666666;
+    box-shadow: 0px 0px 4px 0px grey;
+}
+
+.order-status.wait {
+    /* color: gray; */
+    color: orange;
+}
+
+.order-status.transporting {
+    color: darkgoldenrod;
+}
+
+.order-status.received {
+    color: darkgreen;
+}
+
+.order-status.cancel {
+    color: darkred;
+}
+
+.detail-btn {
+    text-decoration: none;
+    padding: 3px 12px;
+}
+
+.detail-btn i{
+    margin-right: 3px;
+}

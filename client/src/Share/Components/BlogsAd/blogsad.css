@@ -1,0 +1,20 @@
+.blogs-ad-title {
+    text-align: center;
+    font-size: 28px;
+    margin: 14px 0px 10px 0px;
+}
+
+.blogs-ad-line {
+    margin: auto;
+    width: 160px;
+    background: #b41718;
+    border: solid 1px #b41718;
+}
+
+.blogs-ad-content {
+    margin: 15px 0px;
+}
+
+.blogs {
+    margin: 0 -12px;
+}

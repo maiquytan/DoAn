@@ -1,0 +1,42 @@
+
+.tag-wrap {
+    padding: 0 12px;
+    text-decoration: none;
+}
+
+.tag {
+    margin: 10px 0px;
+    height: 300px;
+    text-decoration: none;
+}
+
+.mask-tag {
+    height: 100%;
+    background-color: rgba(43, 42, 42, 0.288);
+    transition: 0.4s;
+}
+
+.btn-tag {
+    height: 40px;
+    width: 160px;
+    text-align: center;
+    border: solid 2px white;
+    color: white;
+    font-size: 23px;
+    line-height: 37px;
+    text-transform: uppercase;
+    display: none;
+    transition: 2s;
+}
+
+.mask-tag:hover .btn-tag {
+    display: block;
+    cursor: pointer;
+}
+
+.mask-tag:hover {
+    background-color: rgba(43, 42, 42, 0.582);
+    cursor: pointer;
+}
+
+/* askjbfhagfkas */

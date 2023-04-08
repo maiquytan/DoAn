@@ -1,0 +1,170 @@
+
+button#subscribe-submit:hover {
+    background: #d50606;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+
+footer.pharmacy-footer {
+    background: #0e61b6;
+    color: white;
+}
+
+ul.contact-footer-menu {
+    padding: 0;
+    color: gray;
+}
+
+.contact-footer-menu li {
+    list-style-type: none;
+    margin: 12px 0px;
+}
+
+
+.contact-footer-menu li i {
+    margin-right: 5px;
+}
+
+.ministry-industry-trade img {
+    padding: 0px 9px 0px 0px;
+    background: white;
+    border-radius: 5px;
+}
+
+.map-footer-wrap iframe {
+    height: 200px;
+    width: 100%;
+}
+
+.map-footer-wrap {
+    margin: auto;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.top-footer h3 {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+}
+
+hr.footer-bar {
+    height: 10px;
+    /* background: #d1b21b; */
+    background: linear-gradient(
+89deg
+, #d1b037, rgba(255, 255, 255, 0.7529411765));
+    border: none;
+    border-bottom: solid 2px #cfb5a3;
+}
+
+.bottom-footer-content {
+    width: 33%;
+}
+
+.footer-social {
+    margin-bottom: 10px;
+}
+
+.footer-social h3 {
+    margin-top: 10px;
+}
+
+.footer-social_icon img {
+    width: 35px;
+}
+
+.footer-social_icon a {
+    margin-left: 15px;
+}
+
+.follow-us-footer {
+    width: 40%;
+}
+
+.about-us-footer {
+    width: 30%;
+    padding: 6px;
+}
+
+.service-footer {
+    width: 30%;
+    padding: 6px;
+}
+
+.subscribe-area {
+    position: relative;
+    margin-bottom: 15px;
+    width: max-content;
+    background: white;
+    padding: 0px 3px;
+    border-radius: 5px;
+}
+
+.subcribe-input {
+    border-radius: 8px;
+    border: none;
+    background-color: #fff;
+    height: 44px;
+    padding: 0 100px 0 20px;
+    line-height: 130%;
+    outline: none;
+}
+
+ .btn-subscribe {
+    width: 97px;
+    height: 36px;
+    border-radius: 4px;
+    background-color: #337ab7;
+    font-size: 13px;
+    font-weight: 700;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #fff;
+    bottom: 4px;
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+}
+
+input.subcribe-input:focus-visible {
+    border: none !important;
+}
+
+input.subcribe-input:focus {
+    border: none !important;
+}
+
+
+/*
+    This is new
+*/
+.top-footer {
+    color: gray;
+}
+
+.footer-intro {
+    width: 40%;
+    padding: 6px 45px 6px 6px;
+}
+
+.footer-title {
+    font-size: 40px;
+    margin: 10px 0px;
+    color: #824747;
+    font-weight: 500;
+    text-shadow: 2px 2px 1px #cab5b5;
+}
+
+.footer-des {
+    text-align: justify;
+    line-height: 30px;
+    font-size: 17px;
+    padding: 6px 6px;
+    color: gray;
+}

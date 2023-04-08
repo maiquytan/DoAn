@@ -1,0 +1,233 @@
+.product-detail-frame {
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.795);
+    height: 100vh;
+    width: 100vw;
+    display: none;
+    visibility: hidden;
+}
+
+.product-detail-check:checked+.product-detail-frame {
+    display: block;
+    visibility: visible;
+}
+
+.product-detail {
+    background-color: rgb(255, 255, 255);
+    height: 130vh;
+}
+
+.close-wrap {
+    padding: 6px;
+    display: flex;
+    justify-content: right;
+}
+
+.btn-close {
+    margin-right: 12px;
+    font-size: 30px;
+    color: white;
+    text-shadow: 2px 1px 3px #393737;
+    cursor: pointer;
+}
+
+/* .btn-close i{
+    text-shadow: 1px 1px 1px gray;
+} */
+
+.product-detail-wrap {
+    display: flex;
+    min-height: 86vh;
+    justify-content: center;
+}
+
+.product-image-frame {
+    /* background-color: #393737; */
+    padding: 0px 12px;
+    margin: 0px 12px 0 0px;
+}
+
+.product-image {
+    height: 100%;
+    background-size: contain !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+}
+
+.product-content {
+    /* background-color: aliceblue; */
+    display: flex;
+    flex-direction: column;
+    padding: 0px 6px;
+}
+
+.product-content span {
+    color: darkblue;
+    font-weight: 600;
+}
+
+.product-title {
+    font-size: 23px;
+    margin-bottom: 6px;
+}
+
+span.product-code {
+    color: gray;
+    font-size: 16px;
+}
+
+span.product-update-price {
+    color: black;
+    font-size: 25px;
+    font-weight: 400;
+    margin-right: 12px;
+}
+
+span.product-origin-price {
+    color: gray;
+    font-size: 16px;
+    font-style: italic;
+    text-decoration: line-through;
+    font-weight: 400;
+}
+
+.product-color-name {
+    font-size: 17px;
+}
+
+.product-colors {}
+
+.product-color {
+    height: 38px;
+    width: 38px;
+    border: solid 3px darkgray;
+    border-radius: 50%;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    position: relative;
+    cursor: pointer;
+}
+
+.product-color::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    height: 10px;
+    width: 20px;
+    content: "";
+    z-index: 10;
+    border-bottom: solid 3px;
+    border-left: solid 3px;
+    border-color: white;
+    box-sizing: border-box;
+    transform: rotate(-45deg) translate(49%, -3%);
+    display: none;
+}
+
+.product-color.active::before {
+    display: block;
+}
+
+.product-size-name {
+    font-size: 17px;
+}
+
+.product-sizes {}
+
+.product-size {
+    height: 40px;
+    width: 40px;
+    border: solid 2px darkgray;
+    margin-right: 6px;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    display: flex;
+    padding-top: 6px;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+}
+
+.product-size.active {
+    border: solid 3px green;
+    color: green;
+}
+
+.product-stock {
+    font-size: 17px;
+}
+
+.product-detail-actions {
+    margin-top: auto;
+}
+
+.product-detail-actions .row {
+    justify-content: space-between;
+}
+
+.product-detail-action {
+    width: calc(50% - 3px);
+
+    border-radius: 7px;
+    text-align: center;
+    padding: 9px 0px;
+    cursor: pointer;
+}
+
+.btn-like {
+    border: solid 1px rgb(201 107 107);
+    color: rgb(201 107 107);
+}
+
+.btn-like:hover {
+    background: rgb(201 107 107);
+    color: white;
+    transition: 0.4s;
+}
+
+.btn-add-to-cart {
+    border: solid 1px rgb(7, 156, 86);
+    color: rgb(7, 156, 86);
+}
+
+.btn-add-to-cart:hover {
+    background: rgb(7, 156, 86);
+    color: white;
+    transition: 0.4s;
+}
+
+
+.product-content-line {
+    width: 100%;
+    margin: 16px 0;
+}
+
+
+/* this is rating star css */
+
+.star-rating {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+}
+
+.back-stars {
+    display: flex;
+    color: #bb5252;
+    position: relative;
+    text-shadow: 4px 4px 10px #843a3a;
+}
+
+.front-stars {
+    display: flex;
+    color: #FFBC0B;
+    overflow: hidden;
+    position: absolute;
+    text-shadow: 2px 2px 5px #d29b09;
+    top: 0;
+    transition: all .5s
+}

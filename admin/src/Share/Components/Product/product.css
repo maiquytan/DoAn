@@ -1,0 +1,71 @@
+.admin-td td {
+    padding: 6px 6px 9px 6px;
+    font-size: 14px;
+    color: black;
+    font-weight: 400;
+    border-bottom: solid 1px gray;
+}
+
+.table-product-name img {
+    height: 48px;
+}
+
+.table-product-name .row {
+    align-items: center;
+}
+
+.table-product-name span {
+    margin-left: 12px;
+}
+
+.table-actions {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.table-actions button{
+    margin: 0 2px;
+    cursor: pointer;
+    height: 30px;
+    width: 30px;
+    border: solid 1px gray;
+    border-radius: 3px;
+}
+
+.admin-td:hover .table-actions {
+    /* display: block; */
+    visibility: visible;
+}
+
+.admin-td:hover {
+    background-color: rgb(232, 232, 232);
+    transition: 0.4s;
+    /* cursor: pointer; */
+    visibility: visible;
+}
+
+.table-actions {
+    /* display: none; */
+    /* visibility: hidden; */
+}
+
+th.th-actions {
+    text-align: center;
+}
+
+.table-read {
+    margin: 3px;
+    height: 30px;
+    width: 30px;
+    border: solid 1px gray;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(239, 239, 239);
+    cursor: pointer;
+}
