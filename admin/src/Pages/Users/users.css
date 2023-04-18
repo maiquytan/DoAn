@@ -1,0 +1,36 @@
+.admin-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.admin-table td, .admin-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  font-size: 15px;
+}
+.admin-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.admin-table tr:hover {background-color: #ddd;}
+
+.admin-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #04AA6D;
+  color: white;
+}
+.td-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.td-actions i {
+  padding: 0 10px;
+}
+.confirm {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  width: 20%;
+  min-width: 200px;
+  background-color: chartreuse;
+}

@@ -187,7 +187,7 @@ export default function PreviewProductModal() {
           </ClickOutSide>
         </div>
       </div >
-      <style jsx="true">
+      <style jsx>
         {`
           .product-detail-modal.show{
             visibility: visible;

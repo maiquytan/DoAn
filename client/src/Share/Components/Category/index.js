@@ -8,7 +8,7 @@ import { getBaseProduct } from '../../../lib'
 export default function Category({ backgroundColor, title, dataList }) {
 
   const [baseProducts, setBaseProduct] = useState({})
-
+  console.log(dataList,"1234567")
   const sendRegisterInfor = async () => {
     const response = await getBaseProduct();
     if (response?.code) {
@@ -30,7 +30,7 @@ export default function Category({ backgroundColor, title, dataList }) {
           {title || 'Danh muc'}
         </h2>
         <div className='row product-lists'>
-          {baseProducts?.results?.map((product, index) => (
+          {dataList?.results?.map((product, index) => (
             <ProductListItem
               key={index}
               data={product}

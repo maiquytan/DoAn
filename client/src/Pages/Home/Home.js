@@ -9,6 +9,7 @@ import BigTags from './BigTags/BigTags'
 import { getBaseProduct } from '../../lib'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
 const fakeHomeData = {
   categories: [
@@ -253,7 +254,7 @@ const fakeHomeData = {
 
 export default function Home() {
   const [blogs, setBlogs] = useState({})
-
+  const dispatch = useDispatch();
 
 
   useEffect(() => {

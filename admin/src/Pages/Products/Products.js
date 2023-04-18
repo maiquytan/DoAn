@@ -6,22 +6,24 @@ import { getBaseProduct } from '../../lib'
 import PaginateSearch from '../../Share/Components/Paginator/Paginate'
 
 export default function Products() {
-  const [baseProducts, setBaseProducts] = useState()
+  const [baseProducts, setBaseProducts] = useState([])
   const [currentPage, setCurrentPage] = useState(1)
   const [totalPage, setTotalPage] = useState(1)
 
   useEffect(() => {
     const sendRequest = async () => {
-      const response = await getBaseProduct('', currentPage)
+      const response = await getBaseProduct(currentPage)
+      console.log(response.products,"1111")
       if (response) {
-        setBaseProducts(response.results)
-        setTotalPage(Math.ceil(Number(response.count) / 10))
+        setBaseProducts(response.products)
+        setTotalPage(Math.ceil(response.totalProducts / 10))
       }
     }
     sendRequest()
   }, [currentPage])
 
   console.log(baseProducts)
+  console.log(totalPage)
 
   return (
     <div className='admin-page'>
@@ -32,24 +34,28 @@ export default function Products() {
           </div>
           < div className='admin-page-content'>
             <table className='admin-table'>
-              <tr className='admin-th'>
-                <th style={{ textAlign: 'center' }}>Tên sản phẩm</th>
-                <th>Mã sản phẩm</th>
-                {/* <th>Tồn kho</th> */}
-                <th>Giá</th>
-                <th className='th-actions'>Thao tác</th>
-              </tr>
+              <thead>
+                <tr className='admin-th'>
+                  <th style={{ textAlign: 'center' }}>Tên sản phẩm</th>
+                  <th>Mã sản phẩm</th>
+                  {/* <th>Tồn kho</th> */}
+                  <th>Giá</th>
+                  <th className='th-actions'>Thao tác</th>
+                </tr>
+              </thead>
+              <tbody>
               {baseProducts?.map((item, index) => (
                 <Product data={item} key={index} />
               ))}
+              </tbody>
             </table>
-
           </div>
           <div className="justify-center pagination-wrap">
             <PaginateSearch
               totalPage={totalPage}
               currentPage={currentPage}
-              handleSetPage={(page) => {setCurrentPage(page) }}
+              handleSetPage={(page) => { setCurrentPage(page) }}
+              setCurrentPage = {setCurrentPage}
             />
           </div>
         </div>

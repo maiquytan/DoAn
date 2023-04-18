@@ -1,29 +1,28 @@
 import { api } from '../api';
 import { getCookie } from '../helper';
 import axios from 'axios';
+import { loginFailed, loginStart, loginSuccess, registerFailed, registerStart, registerSuccess } from '../reducers/app.js';
 
 
-export const register = async (params) => {
+export const register = async (user,dispatch,history) => {
+  dispatch(registerStart());
   try {
-    let formData = new FormData()
-    Object.keys(params).forEach(key => {
-      formData.append(`${key}`, params[key])
-    })
-    const response = await api.post(`users/`, formData);
-    return response.data
+    const res = await axios.post('http://localhost:4000/api/auth/register', user);
+    dispatch(registerSuccess())
+    history.push("/login");
   } catch (error) {
-    console.log({ error: error.response.data })
-    return { error: error.response.data }
+    dispatch(registerFailed())
   }
 }
 
-export const login = async (username,password) => {
+export const login = async (user,dispatch,history) => {
+  dispatch(loginStart());
   try {
-    const response = await axios.post('http://localhost:4000/login', {username,password});
-    console.log(response,1111);
-    return response.data
+    const res = await axios.post('http://localhost:4000/api/auth/login', user);
+    dispatch(loginSuccess(res.data))
+    history.push("/");
   } catch (error) {
-    return error.response.data
+    dispatch(loginFailed())
   }
 }
 
@@ -38,9 +37,9 @@ export const getUserInfor = async (params) => {
   }
 }
 
-export const getBaseProduct = async (params = '', page = 1) => {
+export const getBaseProduct = async ( page ) => {
   try {
-    const response = await api.get(`base_products/?q=${params}&page=${page}`);
+    const response = await api.get(`api/product?page=${page}`);
     return response.data
   } catch (error) {
     return null

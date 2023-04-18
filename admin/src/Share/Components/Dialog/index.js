@@ -1,3 +1,4 @@
+import React from "react"
 export default Dialog = ({ children }) => {
 
   return (
@@ -8,7 +9,7 @@ export default Dialog = ({ children }) => {
           {children}
         </div>
       </div>
-      <style jsx>
+      <style jsx="true">
         {`
           dis
         `}

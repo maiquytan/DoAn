@@ -3,6 +3,17 @@ import { getCookie, updateAccess } from '../helper'
 
 export const initialState = {
   information: {},
+  login: {
+    currentUser: null,
+    isFetching: false,
+    error: false
+  },
+  register: {
+    success: false,
+    isFetching: false,
+    error: false
+  },
+  product: {},
   isLogedIn: typeof document !== 'undefined' && !!getCookie('access_token'),
   previewProduct: {},
   cart: typeof document !== 'undefined' ? JSON.parse(localStorage.getItem('bibyCart')) || [] : [],
@@ -12,16 +23,38 @@ const slice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    login(state, action) {
-      if (action.payload.access_token) {
-        state.isLogedIn = true
-        updateAccess(action.payload.access_token)
-      }
+    loginStart: (state) => {
+      state.login.isFetching = true;
+    },
+    loginSuccess: (state, action) => {
+      state.login.isFetching = false;
+      state.login.currentUser = action.payload;
+      state.login.error = false;
+    },
+    loginFailed: (state) => {
+      state.login.isFetching = false;
+      state.login.error = true;
+    },
+    registerStart: (state) => {
+      state.register.isFetching = true;
+    },
+    registerSuccess: (state, action) => {
+      state.register.isFetching = false;
+      state.register.success = true;
+      state.register.error = false;
+    },
+    registerFailed: (state) => {
+      state.register.isFetching = false;
+      state.register.success = false;
+      state.register.error = true;
     },
     logout(state, action) {
       state.information = null
       state.isLogedIn = false
       updateAccess(null)
+    },
+    getProduct(state, action) {
+      state.product = action.payload
     },
     setUserInfor(state, action) {
       if (!action.payload.code && getCookie('access_token')) {
@@ -86,7 +119,7 @@ const slice = createSlice({
 })
 
 export const { actions } = slice
-
+export const { loginStart, loginSuccess, loginFailed, registerStart, registerSuccess, registerFailed } = slice.actions;
 // export const useDashboardSlice = () => {
 //   useInjectReducer({ key: slice.name, reducer: slice.reducer })
 //   useInjectSaga({ key: slice.name, saga: dashboardSaga })

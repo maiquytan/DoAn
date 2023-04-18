@@ -1,6 +1,7 @@
 import { api } from '../api';
 import { getCookie } from '../helper';
-
+import { getAllUser, removeUser } from '../reducers/app';
+// import axios from 'axios';
 
 export const register = async (params) => {
   try {
@@ -19,6 +20,24 @@ export const login = async (params) => {
     return error.response.data
   }
 }
+export const getUsers = async (dispatch) => {
+  try {
+    const response = await api.get('api/user/');
+    console.log(response.data)
+    dispatch(getAllUser(response.data))
+
+  } catch (error) {
+    return error
+  }
+}
+export const deleteUsers = async (id,dispatch) => {
+  try {
+    await api.delete('api/user/'+ id);
+    dispatch(removeUser(id))
+  } catch (error) {
+    return error
+  }
+}
 
 export const getUserInfor = async (params) => {
   try {
@@ -31,9 +50,9 @@ export const getUserInfor = async (params) => {
   }
 }
 
-export const getBaseProduct = async (params = '', page = 1) => {
+export const getBaseProduct = async ( page ) => {
   try {
-    const response = await api.get(`base_products/?q=${params}&page=${page}`);
+    const response = await api.get(`api/product?page=${page}`);
     return response.data
   } catch (error) {
     return null

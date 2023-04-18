@@ -1,3 +1,5 @@
+import React from "react"
+
 const ToastMessage = ({ message, backgroundColor }) => {
   return (
     <>
@@ -12,7 +14,7 @@ const ToastMessage = ({ message, backgroundColor }) => {
               </div>
             </div>
           </div>
-          <style jsx>
+          <style jsx="true">
             {`
               .toast {
                 height: 40px;

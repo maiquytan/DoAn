@@ -10,6 +10,7 @@ import {
 import SideBar from './Share/Components/SideBar/SideBar';
 import TopBar from './Share/Components/TopBar/TopBar';
 import Home from './Pages/Home/Home';
+import Users from './Pages/Users/Users';
 import Products from './Pages/Products/Products';
 import Inputs from './Pages/Input/Inputs';
 import Orders from './Pages/Orders/Orders';
@@ -31,6 +32,10 @@ function App() {
 
               <Route exact path="/">
                 <Home />
+              </Route>
+
+              <Route exact path="/users">
+                <Users />
               </Route>
 
               <Route exact path="/products">

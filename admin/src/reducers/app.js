@@ -2,6 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 
 export const initialState = {
   information: {},
+
+  users: {
+    allUser: null,
+    isFetching: false,
+    error: false
+  },
+  
   previewProduct: {},
   cart: typeof document !== 'undefined' ? JSON.parse(localStorage.getItem('bibyCart')) || [] : [],
 }
@@ -10,6 +17,13 @@ const slice = createSlice({
   name: 'app',
   initialState,
   reducers: {
+    getAllUser: (state,action) => {
+      state.users.allUser = action.payload;
+    },
+    removeUser:(state, action) =>{
+      const removeUserID = action.payload;
+      state.users.allUser = state.users.allUser.filter(user => user._id !== removeUserID);
+  },
     setPreviewProduct(state, action) {
       state.previewProduct = action.payload
     },
@@ -68,10 +82,8 @@ const slice = createSlice({
 
 export const { actions } = slice
 
-// export const useDashboardSlice = () => {
-//   useInjectReducer({ key: slice.name, reducer: slice.reducer })
-//   useInjectSaga({ key: slice.name, saga: dashboardSaga })
-//   return { actions: slice.actions }
-// }
+export const {
+  getUsersStart, getsUsersSuccess, getUsersFailed ,getAllUser, removeUser
+} = slice.actions;
 
 export default slice.reducer

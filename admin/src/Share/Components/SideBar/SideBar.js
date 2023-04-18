@@ -18,6 +18,11 @@ export default function SideBar() {
              <i className='fa fa-home'></i> Home
           </li>
           </a>
+          <a href='/users'>
+            <li className='sidebar-item'>
+            <i className='fa fa-address-book'></i> Quản lý tài khoản
+            </li>
+          </a>
         </ul>
         <hr/>
         <div className='sidebar-categorys'>

@@ -6,13 +6,13 @@ import { getOrdersUser, getUserInfor } from '../../lib'
 
 const fakeProfileData = {
   id: 1,
-  fullname: 'Pham My Linh',
+  fullname: 'Mai Quy Tan',
   image: '',
   gender: 0,
   birth_year: 1998,
   phone: '0327123388',
-  email: 'linhmypham98@gmail.com',
-  address: 'số 34, ngõ 3, xóm Đông, Cổ Dương, Tiên Dương, Hà Nội'
+  email: 'maiquytan123@gmail.com',
+  address: 'Bảo Châu, Đông La, Đông Hưng, Thái Bình'
 }
 
 const fakeOrdersData = {

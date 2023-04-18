@@ -13,9 +13,9 @@ export default function NavBar() {
   const dispatch = useDispatch()
   const pathname = (window.location.pathname)
   const history = useHistory()
-
+  const user = useSelector((state) => state.app.login.currentUser)
+  console.log("name",user)
   const cart = useSelector(state => state.app.cart) || []
-  const isLogedIn = useSelector(state => state.app.isLogedIn)
 
   const [isDropdown, setIsDropdown] = useState(false)
 
@@ -77,13 +77,13 @@ export default function NavBar() {
                 <input type="checkbox" className="cart-check hidden-check" name="cart-checkbox" id="cart-check" autoComplete="off" />
                 <Cart />
               </li>
-              {isLogedIn ? (
+              {user ? (
                 <li
                   className={`nav-item ${'/profile' === pathname ? 'active' : ''}`}
                   style={{ position: 'relative', minHeight: 35, minWidth: 35, display: 'flex', justifyContent: 'center' }}
                   onClick={() => setIsDropdown(!isDropdown)}
                 >
-                  {/* <a href="/profile"> */}
+                  <p className="username">{user.firstName}</p>
                   <i className="fa fa-user-circle" />
                   {/* </a> */}
                   <div className={`dropdown-login ${isDropdown ? 'dropdown' : ''}`}>
@@ -98,6 +98,7 @@ export default function NavBar() {
                       </li>
                     </ul>
                   </div>
+
                 </li>
               ) : (
                 < div className="nav-login-btn">

@@ -1,11 +1,11 @@
 .product-lists-item {
-    padding: 0 6px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    padding: 0 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .thumb-item {
-    height: 300px;
+    height: 500px;
     background-size: cover !important;
     background-position: center !important;
     position: relative;
@@ -33,7 +33,7 @@
     border-radius: 50%;
     text-decoration: none;
     margin: 0px 5px;
-    
+
 }
 
 .thumb-item-action:hover {

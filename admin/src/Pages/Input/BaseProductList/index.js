@@ -1,5 +1,5 @@
 import ClickOutSide from "../../../hooks/ClickOutSide"
-
+import React from "react"
 
 export default function BaseProductList({ baseProductList, handleSetBaseProductProp, turnOffDropDown }) {
 
@@ -29,7 +29,7 @@ export default function BaseProductList({ baseProductList, handleSetBaseProductP
           </div>
         </div>
       </ClickOutSide>
-      <style jsx>
+      <style jsx="true">
         {`
           .base-product-list {
             position: absolute;

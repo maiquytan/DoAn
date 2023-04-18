@@ -6,200 +6,9 @@ import BlogsAd from '../../Share/Components/BlogsAd/BlogsAd'
 import NewsLetter from '../../Share/Components/NewsLetter/NewsLetter'
 import ProductListItem from '../../Share/Components/ProductListItem/ProductListItem'
 import './shop.css'
+import { useDispatch } from 'react-redux'
 
 const fakeHomeData = {
-	categories: [
-		{
-			title: 'Mới nhất',
-			list: [
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/batman-im-not-saying-funny-quote.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/black-lives-matter-say-their-names.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/boo-halloween.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/coffee-because-murder-is-wrong.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/costume-not-found-error-404-funny-halloween.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/costume-not-found-error-404-funny-halloween.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/fred-flintstone-tie.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/gaston-costume.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/globo-gym.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/harry-potter-harry-potter-i-solemnly-swear.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-			]
-		},
-		{
-			title: 'Hot nhất',
-			list: [
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/im-someones-boo-halloween.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/jimmy-neutron.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/looney-tunes-bugs-bunny.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/looney-tunes-marvin-the-martian.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/magical-adventure.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/pumpkin-halloween.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/raining-hearts.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/rocket-power-regina.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/staypuft-marshmallow-man-shirt.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-				{
-					id: 1,
-					slug: '1',
-					thumbnail: '/assets/images/products/tammy-mahalo-shirt.webp',
-					name: 'Áo phông xịn xò',
-					sale: 0.2,
-					listedPrice: 124000,
-					likes: 143
-				},
-			]
-		},
-	],
 	blogs: [
 		{
 			id: 1,
@@ -229,29 +38,24 @@ const fakeHomeData = {
 }
 
 export default function Shop() {
-	const [baseProducts, setBaseProduct] = useState({})
+	const [baseProducts, setBaseProducts] = useState([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPage, setTotalPage] = useState(1)
 	const [searchText, setSearchText] = useState('')
+	const dispatch = useDispatch();
 
-	const sendRequest = async (searchText = '', page = 1) => {
-		const response = await getBaseProduct(searchText, page);
-		if (response?.code) {
-			return response.detail
+	const sendRequest = async () => {
+		const response = await getBaseProduct(currentPage)
+		console.log(response.products,"1111")
+		if (response) {
+			setBaseProducts(response.products)
+			setTotalPage(Math.ceil(response.totalProducts / 10))
 		}
-		setBaseProduct(response)
-		setTotalPage(Math.ceil(Number(response.count) / 10))
-		return response
 	}
-
 	useEffect(() => {
-		sendRequest()
-	}, [])
-
-	useEffect(() => {
-		sendRequest(searchText, currentPage)
-	}, [currentPage])
-
+    sendRequest()
+  }, [currentPage])
+	console.log(baseProducts,"2222")
 	const handleSearch = (e) => {
 		console.log(e)
 		e.preventDefault()
@@ -307,7 +111,6 @@ export default function Shop() {
 					</div>
 				</div>
 				<div className="products-filter">
-
 					<input className="filter-check hidden-check" name="filter" id="filter"
 						type="checkbox" autoComplete="off"
 					/>
@@ -463,10 +266,9 @@ export default function Shop() {
 			</div>
 			<div className="products container">
 				<div className="row product-lists">
-					{baseProducts?.results?.map((product, index) => (
-						<ProductListItem data={product} key={index} />
-						// <></>
-					))}
+					{/* {baseProducts?.map((product, index) => ( */}
+						<ProductListItem data={baseProducts} />
+					{/* ))} */}
 				</div>
 				<div className="justify-center pagination-wrap">
 					<PaginateSearch
