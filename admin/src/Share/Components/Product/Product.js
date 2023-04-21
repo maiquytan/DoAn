@@ -26,7 +26,7 @@ export default function Product({ data }) {
         </div>
       </td>
       <td>
-        {data?.code_name}
+        {data?.code}
       </td>
       {/* <td>
         {data?.product_colors?.length}

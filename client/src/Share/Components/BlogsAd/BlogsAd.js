@@ -2,7 +2,7 @@ import Blog from './BLog/Blog'
 import './blogsad.css'
 
 export default function BlogsAd({ blogs }) {
-
+  console.log(blogs, "ww");
   return (
     <div className='blogs-ad part'>
       <h3 className='blogs-ad-title'>

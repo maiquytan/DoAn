@@ -9,13 +9,14 @@ export default function Cart() {
   const dispatch = useDispatch()
 
   const cart = useSelector(state => state.app.cart)
+
   const tempTotalPrice = cart?.reduce(
     (accumulator, currentValue) => accumulator + currentValue.quantity * currentValue.price,
     0
   );
 
   useEffect(() => {
-    console.log(cart)
+    console.log(cart, "aaaa")
   }, [cart])
 
   return (

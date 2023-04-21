@@ -7,7 +7,7 @@ import { loginFailed, loginStart, loginSuccess, registerFailed, registerStart, r
 export const register = async (user,dispatch,history) => {
   dispatch(registerStart());
   try {
-    const res = await axios.post('http://localhost:4000/api/auth/register', user);
+    await axios.post('http://localhost:4000/api/auth/register', user);
     dispatch(registerSuccess())
     history.push("/login");
   } catch (error) {
@@ -45,13 +45,12 @@ export const getBaseProduct = async ( page ) => {
     return null
   }
 }
-
-export const getProductColorsByBaseProductId = async (params) => {
+export const getBlogs = async ( page ) => {
   try {
-    const response = await api.get(`/base_products/${params}/product_colors`);
+    const response = await api.get(`api/blog/`);
     return response.data
   } catch (error) {
-    return error.response.data || null
+    return null
   }
 }
 

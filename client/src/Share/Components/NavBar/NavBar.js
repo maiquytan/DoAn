@@ -5,7 +5,6 @@ import { useHistory } from 'react-router-dom'
 import Cart from '../Cart/Cart'
 import { LINK } from '../../../Constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { getCookie } from '../../../helper'
 import { useState } from 'react'
 import { actions } from '../../../reducers/app'
 
@@ -52,18 +51,16 @@ export default function NavBar() {
                   key={index}
                   className={`nav-item ${pathname === item.url ? 'active' : ''}`}
                 >
-                  <a href={item.url}>
+                  <NavLink to={item.url}>
                     {item.name}
-                  </a>
+                  </NavLink>
                 </li>
               ))}
               <li className="nav-item" style={{ width: "2px", background: "black", margin: "0px 15px" }} />
-              <li
-                className={`nav-item ${'/favourite' === pathname ? 'active' : ''}`}
-              >
-                <a href="/favourite">
+              <li className={`nav-item ${'/favorite' === pathname ? 'active' : ''}`}>
+                <NavLink to="/favorite">
                   <i className="fa fa-heart" />
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
                 <label className="cart-open" htmlFor="cart-check" style={{ fontSize: "24px", cursor: "pointer", marginBottom: "3px", marginLeft: "6px", marginRight: "6px" }}>
@@ -89,9 +86,9 @@ export default function NavBar() {
                   <div className={`dropdown-login ${isDropdown ? 'dropdown' : ''}`}>
                     <ul style={{ padding: 0 }}>
                       <li>
-                        <a href="/profile">
+                        <NavLink to="/profile">
                           Thông tin và lịch sử
-                        </a>
+                        </NavLink>
                       </li>
                       <li className="logout-btn" onClick={handleLogout}>
                         Đăng xuất
@@ -102,9 +99,9 @@ export default function NavBar() {
                 </li>
               ) : (
                 < div className="nav-login-btn">
-                  <a href="/login">
+                  <NavLink to="/login">
                     Đăng nhập
-                  </a>
+                  </NavLink>
                 </div>
               )}
             </ul>

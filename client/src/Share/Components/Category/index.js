@@ -1,47 +1,19 @@
 import './index.css'
-import { useState, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
-
 import ProductListItem from '../ProductListItem/ProductListItem'
 import { getBaseProduct } from '../../../lib'
 
-export default function Category({ backgroundColor, title, dataList }) {
-
-  const [baseProducts, setBaseProduct] = useState({})
-  console.log(dataList,"1234567")
-  const sendRegisterInfor = async () => {
-    const response = await getBaseProduct();
-    if (response?.code) {
-      return response.detail
-    }
-    setBaseProduct(response)
-    return response
-  }
-
-  useEffect(() => {
-    sendRegisterInfor()
-  }, [])
-
+export default function Category({ hot }) {
+  console.log(hot)
 
   return (
-    <div className='part category' style={{ background: backgroundColor ? 'linear-gradient(0deg, #F4F1E9, #F4F1E9), #FFFFFF' : 'transparent' }}>
+    <div className='part category' >
       <div className='container'>
-        <h2 className='category-title'>
-          {title || 'Danh muc'}
-        </h2>
-        <div className='row product-lists'>
-          {dataList?.results?.map((product, index) => (
+
+        {/* <div className='row product-lists'>
             <ProductListItem
-              key={index}
-              data={product}
+              data={newProduct}
             />
-          ))}
-        </div>
-        <NavLink to="/shop">
-          <div className="btn-see-more">
-            See more...
-          </div>
-        </NavLink>
+        </div> */}
       </div>
     </div>
   )

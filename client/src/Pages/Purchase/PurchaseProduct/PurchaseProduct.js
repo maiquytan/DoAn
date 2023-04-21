@@ -4,15 +4,6 @@ import './purchaseProduct.css'
 
 export default function PurchaseProduct({ data }) {
   const dispatch = useDispatch()
-  const {
-    id,
-    name,
-    image,
-    price,
-    colorProduct,
-    size,
-    quantity,
-  } = data
 
   const handleChangeQuantity = (value) => {
     if (data && value) {
@@ -30,31 +21,27 @@ export default function PurchaseProduct({ data }) {
     <tr className="alert" role="alert">
       <td>
         <div className="img" style={{ background: '#eee', textAlign: 'center' }} >
-          <img src={colorProduct?.image} alt={name} style={{ height: '100%' }} />
+          <img src={data.image} alt={data.name} style={{ height: '100%' }} />
         </div>
       </td>
       <td>
         <div className="email">
           <span>
-            {name}
+            {data.name}
           </span>
           <div className="d-flex color-size" >
             <div
               className="item-color"
-              style={{
-                backgroundColor: colorProduct?.color.color_code,
-                borderColor: (colorProduct?.color.color_code === 'white' || colorProduct?.color.color_code === '#fffff' ? 'gray' : 'white'),
-                boxSizing: 'border-box',
-              }}
+
             />
             <div className="item-size">
-              {size}
+              {data.size}
             </div>
           </div>
         </div>
       </td>
       <td>
-        {price}
+        {data.price}
       </td>
       <td className="quantity">
         <div className="input-group item-price d-flex">
@@ -72,14 +59,14 @@ export default function PurchaseProduct({ data }) {
             <i className="fa fa-plus"></i>
           </div> */}
           <input type="number" name="quantity" className="quantity form-control input-number" defaultValue={2} min={1} max={100} onKeyDown="return false"
-            value={quantity}
+            value={data.quantity}
             onChange={(e) => handleChangeQuantity(e.target.value)}
           />
         </div>
         {/* {quantity} */}
       </td>
       <td>
-        {quantity * price}
+        {data.quantity * data.price}
       </td>
       <td>
         <button type="button" className="close" data-dismiss="alert" aria-label="Close"

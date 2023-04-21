@@ -8,7 +8,7 @@ export const initialState = {
     isFetching: false,
     error: false
   },
-  
+
   previewProduct: {},
   cart: typeof document !== 'undefined' ? JSON.parse(localStorage.getItem('bibyCart')) || [] : [],
 }

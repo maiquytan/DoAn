@@ -1,59 +1,31 @@
+import { useDispatch } from 'react-redux'
 import Blog from '../../Share/Components/BlogsAd/BLog/Blog'
 import NewsLetter from '../../Share/Components/NewsLetter/NewsLetter'
 import './blogsPage.css'
-
-const fakeBlogs = [
-  {
-    id: 1,
-    slug: 'dauxanh',
-    thumbnail: 'assets/images/image-3.png',
-    title: 'Dau xanh rau ma',
-    description: 'Dau xanh rau ma co the giup ban giam can mot cach dang ke, ngon hon khi uong lanh, no hon khi an 2 bat.',
-    created_at: 'April 4, 12',
-  },
-  {
-    id: 1,
-    slug: 'dauxanh',
-    thumbnail: 'assets/images/image-2.png',
-    title: 'Thời trang mùa đông nên chọn màu gì để mặc?',
-    description: 'Mùa đông lạnh bạn vẫn có thể diện những chiếc váy 2 dây, váy hoa điệu đà được mà không lo giá...',
-    created_at: 'April 4, 12',
-  },
-  {
-    id: 1,
-    slug: 'dauxanh',
-    thumbnail: 'assets/images/image-6.png',
-    title: 'Dau xanh rau ma',
-    description: 'Dau xanh rau ma co the giup ban giam can mot cach dang ke, ngon hon khi uong lanh, no hon khi an 2 bat.',
-    created_at: 'April 4, 12',
-  },
-  {
-    id: 1,
-    slug: 'dauxanh',
-    thumbnail: 'assets/images/image-2.png',
-    title: 'Thời trang mùa đông nên chọn màu gì để mặc?',
-    description: 'Mùa đông lạnh bạn vẫn có thể diện những chiếc váy 2 dây, váy hoa điệu đà được mà không lo giá...',
-    created_at: 'April 4, 12',
-  },
-  {
-    id: 1,
-    slug: 'dauxanh',
-    thumbnail: 'assets/images/image-6.png',
-    title: 'Dau xanh rau ma',
-    description: 'Dau xanh rau ma co the giup ban giam can mot cach dang ke, ngon hon khi uong lanh, no hon khi an 2 bat.',
-    created_at: 'April 4, 12',
-  },
-  {
-    id: 1,
-    slug: 'dauxanh',
-    thumbnail: 'assets/images/image-3.png',
-    title: 'Dau xanh rau ma',
-    description: 'Dau xanh rau ma co the giup ban giam can mot cach dang ke, ngon hon khi uong lanh, no hon khi an 2 bat.',
-    created_at: 'April 4, 12',
-  },
-]
+import { useEffect, useState } from 'react'
+import { getBlog } from '../../reducers/app'
+import { getBlogs } from '../../lib'
+import BlogsAd from '../../Share/Components/BlogsAd/BlogsAd'
 
 export default function BLogsPage() {
+  const [listBlogs, setListBlogs] = useState();
+  const dispatch = useDispatch();
+
+  const sendRequestBlog = async () => {
+    const res = await getBlogs();
+    dispatch(getBlog(res))
+    console.log("222",res);
+    if (res) {
+      setListBlogs(res);
+    }
+  }
+
+  useEffect(() => {
+    sendRequestBlog()
+  }, [dispatch]);
+
+  console.log(listBlogs)
+
   return (
     <div className="blogs-page">
       <div className="blogs-page-top" style={{ background: `url('assets/images/blogs-background.jpg')` }}>
@@ -65,11 +37,7 @@ export default function BLogsPage() {
       </div>
       <div className="blogs container">
         <div className="row">
-          {fakeBlogs.map((item, index) => (
-            <div className="col-4" key={index}>
-              <Blog data={item} />
-            </div>
-          ))}
+        <BlogsAd blogs={listBlogs} />
         </div>
       </div>
       <NewsLetter />

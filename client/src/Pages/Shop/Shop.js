@@ -1,43 +1,15 @@
 import { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
 import PaginateSearch from '../../Share/Components/Paginator/Paginate'
-import { getBaseProduct } from '../../lib'
+import { getBaseProduct, getBlogs } from '../../lib'
 import BlogsAd from '../../Share/Components/BlogsAd/BlogsAd'
 import NewsLetter from '../../Share/Components/NewsLetter/NewsLetter'
 import ProductListItem from '../../Share/Components/ProductListItem/ProductListItem'
 import './shop.css'
 import { useDispatch } from 'react-redux'
-
-const fakeHomeData = {
-	blogs: [
-		{
-			id: 1,
-			slug: 'dauxanh',
-			thumbnail: '/assets/images/image-4.png',
-			title: 'Dau xanh rau ma',
-			description: 'Dau xanh rau ma co the giup ban giam can mot cach dang ke, ngon hon khi uong lanh, no hon khi an 2 bat.',
-			created_at: 'April 4, 12',
-		},
-		{
-			id: 1,
-			slug: 'dauxanh',
-			thumbnail: '/assets/images/image-3.png',
-			title: 'Thời trang mùa đông nên chọn màu gì để mặc?',
-			description: 'Mùa đông lạnh bạn vẫn có thể diện những chiếc váy 2 dây, váy hoa điệu đà được mà không lo giá...',
-			created_at: 'April 4, 12',
-		},
-		{
-			id: 3,
-			slug: 'dauxanh',
-			thumbnail: '/assets/images/image-6.png',
-			title: 'Dau xanh rau ma',
-			description: 'Dau xanh rau ma co the giup ban giam can mot cach dang ke, ngon hon khi uong lanh, no hon khi an 2 bat.',
-			created_at: 'April 4, 12',
-		},
-	]
-}
+import { getBlog, getProduct } from '../../reducers/app'
 
 export default function Shop() {
+	const [blogs, setBlogs] = useState([])
 	const [baseProducts, setBaseProducts] = useState([])
 	const [currentPage, setCurrentPage] = useState(1)
 	const [totalPage, setTotalPage] = useState(1)
@@ -46,16 +18,31 @@ export default function Shop() {
 
 	const sendRequest = async () => {
 		const response = await getBaseProduct(currentPage)
-		console.log(response.products,"1111")
+		dispatch(getProduct(response.products))
+		console.log("222",response);
 		if (response) {
 			setBaseProducts(response.products)
 			setTotalPage(Math.ceil(response.totalProducts / 10))
 		}
 	}
+
+	const sendRequestBlog = async () => {
+		const res = await getBlogs();
+    dispatch(getBlog(res))
+		if (res) {
+      setBlogs(res);
+		}
+	}
+
 	useEffect(() => {
     sendRequest()
+		sendRequestBlog()
   }, [currentPage])
-	console.log(baseProducts,"2222")
+
+	const femaleProducts = baseProducts.filter((product)=> product.gender === "Nam")
+	const maleProducts = baseProducts.filter((product)=> product.gender === "Nữ")
+
+
 	const handleSearch = (e) => {
 		console.log(e)
 		e.preventDefault()
@@ -67,9 +54,9 @@ export default function Shop() {
 		<div className="shop">
 			<div className="products-bar container">
 				<div className="products-top-bar row">
-					<h1 className="hidden"></h1>
+					<h1 className="hidden">Shop</h1>
 					<div className="products-by-gender col-4">
-						{/* <input type="radio" className="gender-check hidden-check" name="options" id="option1" autoComplete="off" defaultChecked />
+						<input type="radio" className="gender-check hidden-check" name="options" id="option1" autoComplete="off" defaultChecked />
 						<label className="gender-option" htmlFor="option1" >
 							Tất cả sản phẩm
 						</label>
@@ -80,7 +67,7 @@ export default function Shop() {
 						<input type="radio" className="gender-check hidden-check" name="options" id="option3" autoComplete="off" />
 						<label className="gender-option" htmlFor="option3" >
 							Nữ
-						</label> */}
+						</label>
 					</div>
 					<div className="col-4">
 						<div className="products-search">
@@ -105,9 +92,9 @@ export default function Shop() {
 						</div>
 					</div>
 					<div className="col-4 flex-right">
-						{/* <label className="products-filter-btn" htmlFor="filter">
+						<label className="products-filter-btn" htmlFor="filter">
 							Filter <i className="fa fa-sliders"></i>
-						</label> */}
+						</label>
 					</div>
 				</div>
 				<div className="products-filter">
@@ -266,9 +253,9 @@ export default function Shop() {
 			</div>
 			<div className="products container">
 				<div className="row product-lists">
-					{/* {baseProducts?.map((product, index) => ( */}
-						<ProductListItem data={baseProducts} />
-					{/* ))} */}
+					{baseProducts?.map((product, index) => (
+						<ProductListItem data={product} key={index} products={baseProducts} />
+					))}
 				</div>
 				<div className="justify-center pagination-wrap">
 					<PaginateSearch
@@ -278,7 +265,7 @@ export default function Shop() {
 					/>
 				</div>
 			</div>
-			<BlogsAd blogs={fakeHomeData.blogs} />
+			<BlogsAd blogs={blogs} />
 			<NewsLetter />
 		</div>
 	)

@@ -13,12 +13,14 @@ export const initialState = {
     isFetching: false,
     error: false
   },
-  product: {},
+  products: {},
+  blogs: {},
   isLogedIn: typeof document !== 'undefined' && !!getCookie('access_token'),
   previewProduct: {},
+  favorite: [],
   cart: typeof document !== 'undefined' ? JSON.parse(localStorage.getItem('bibyCart')) || [] : [],
 }
-
+console.log(initialState.products, "nnnn");
 const slice = createSlice({
   name: 'app',
   initialState,
@@ -54,13 +56,21 @@ const slice = createSlice({
       updateAccess(null)
     },
     getProduct(state, action) {
-      state.product = action.payload
+      state.products = action.payload
+      console.log(state.products, "bbbb")
+    },
+    getBlog(state, action) {
+      state.blogs = action.payload
     },
     setUserInfor(state, action) {
       if (!action.payload.code && getCookie('access_token')) {
         state.isLogedIn = true
         state.information = action.payload
       }
+    },
+    setFavoriteProduct(state, action) {
+      state.favorite = [...state.favorite, action.payload]
+      console.log(action.payload, "3333");
     },
     setPreviewProduct(state, action) {
       state.previewProduct = action.payload
@@ -83,30 +93,31 @@ const slice = createSlice({
       localStorage.setItem('bibyCart', JSON.stringify(state.cart))
     },
     addToCart(state, action) {
-      const isProductExist = state.cart.find(item => item.id === action.payload.id)
+      const isProductExist = state.cart.find(item => item._id === action.payload._id)
       if (isProductExist) {
         state.cart = state.cart.map(item => {
-          if (item.id === action.payload.id) item.quantity += 1
+          if (item._id === action.payload._id) item.quantity += 1
           return item
         })
       }
-      else
+      else {
         state.cart = [...state.cart, action.payload]
-
+      }
       localStorage.setItem('bibyCart', JSON.stringify(state.cart))
+      console.log(action.payload);
     },
     removeFromCart(state, action) {
-      const isProductExist = state.cart.find(item => item.id === action.payload.id)
+      const isProductExist = state.cart.find(item => item._id === action.payload._id)
       if (isProductExist)
-        state.cart = state.cart.filter(item => item.id !== action.payload.id)
+        state.cart = state.cart.filter(item => item._id !== action.payload._id)
       localStorage.setItem('bibyCart', JSON.stringify(state.cart))
     },
     decreaseFromCart(state, action) {
-      const isProductExist = state.cart.find(item => item.id === action.payload.id)
+      const isProductExist = state.cart.find(item => item._id === action.payload._id)
       if (isProductExist)
         state.cart = state.cart.map(item => {
           // if (item.quantity <= 0)
-          if (item.id === action.payload.id) item.quantity -= 1
+          if (item._id === action.payload._id) item.quantity -= 1
           return item
         })
       localStorage.setItem('bibyCart', JSON.stringify(state.cart))
@@ -119,7 +130,7 @@ const slice = createSlice({
 })
 
 export const { actions } = slice
-export const { loginStart, loginSuccess, loginFailed, registerStart, registerSuccess, registerFailed } = slice.actions;
+export const { loginStart, loginSuccess, loginFailed, registerStart, registerSuccess, registerFailed, getProduct, getBlog, setPreviewProduct, setFavoriteProduct } = slice.actions;
 // export const useDashboardSlice = () => {
 //   useInjectReducer({ key: slice.name, reducer: slice.reducer })
 //   useInjectSaga({ key: slice.name, saga: dashboardSaga })

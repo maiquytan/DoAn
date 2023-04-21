@@ -18,19 +18,20 @@ import BLogsPage from './Pages/BlogsPage/BLogsPage.js';
 import BLogDetail from './Pages/BlogDetail/BLogDetail.js';
 import Purchase from './Pages/Purchase/Purchase.js';
 import Profile from './Pages/Profile/Profile.js';
-// import Cart from './Share/Components/Cart/Cart.js';
+import Cart from './Share/Components/Cart/Cart.js';
 
 import { store } from './store/store';
 import PreviewProductModal from './Share/Modals/PreviewProductModal.js';
 import NotFound from './Share/Components/NotFound/index.js';
 import OrderDetail from './Pages/OrderDetail/OrderDetail.js';
+import Favorite from './Pages/Favorite/Favorite.js';
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
 
-        <BrowserRouter>
+        <Router>
 
           <NavBar />
 
@@ -41,8 +42,8 @@ function App() {
             <Route exact path="/shop">
               <Shop />
             </Route>
-            <Route exact path="/favourite" component={Shop}>
-              <Shop />
+            <Route exact path="/favorite" component={Shop}>
+              <Favorite />
             </Route>
             <Route exact path="/register">
               <Register />
@@ -75,11 +76,11 @@ function App() {
               <NotFound />
             </Route>
           </Switch>
-        </BrowserRouter>
+        </Router>
+        <PreviewProductModal />
 
         {/* <ProductDetail/> */}
-        {/* <Cart/> */}
-        <PreviewProductModal />
+        <Cart/>
         <Footer />
       </div>
     </Provider>

@@ -15,15 +15,16 @@ export default function PreviewProductModal() {
   const [productSelected, setProductSelected] = useState(null)
 
   const previewProduct = useSelector(state => state.app.previewProduct)
+  console.log(previewProduct)
 
   const handleCloseModal = () => {
     dispatch(actions.clearPreviewProduct())
   }
 
   useEffect(() => {
-    if (previewProduct.id) {
+    if (previewProduct._id) {
       const sendRequest = async () => {
-        const response = await getProductColorsByBaseProductId(previewProduct.id)
+        const response = await getProductColorsByBaseProductId(previewProduct._id)
         if (response) {
           setProductColors(response)
           setColorSelected(response[0])
@@ -71,100 +72,39 @@ export default function PreviewProductModal() {
               </div>
               <div className="product-detail-wrap">
                 <div className="product-image-frame col-6">
-                  <div className="product-image" style={{ background: 'url(' + (colorSelected?.image || previewProduct.image) + ')' }}>
+                  <div className="product-image" style={{ background: 'url(' +  previewProduct.image + ')' }}>
 
                   </div>
                 </div>
                 <div className="product-content col-4">
                   <h2 className="product-title mt-12px">
-                    {previewProduct?.name}
+                  Tên sản phẩm : {previewProduct?.name}
                   </h2>
                   <span className="product-code">
-                    Mã sản phẩm: {previewProduct.code_name}
+                    Mã sản phẩm: {previewProduct.code}
                   </span>
-                  {previewProduct.rating ? (
-                    <div className="star-rating mt-12px" title="70%">
-                      <div className="back-stars">
-                        <i className="fa fa-star" aria-hidden="true" />
-                        <i className="fa fa-star" aria-hidden="true" />
-                        <i className="fa fa-star" aria-hidden="true" />
-                        <i className="fa fa-star" aria-hidden="true" />
-                        <i className="fa fa-star" aria-hidden="true" />
-                        <div className="front-stars" style={{ width: "70%" }}>
-                          <i className="fa fa-star" aria-hidden="true" />
-                          <i className="fa fa-star" aria-hidden="true" />
-                          <i className="fa fa-star" aria-hidden="true" />
-                          <i className="fa fa-star" aria-hidden="true" />
-                          <i className="fa fa-star" aria-hidden="true" />
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <div className="no-rating" style={{ marginTop: '12px', fontStyle: 'italic' }}>
-                      (This product have no rating yet.)
-                    </div>
-                  )}
 
                   <div className="product-price mt-12px">
                     <span className="product-update-price">
-                      {previewProduct.price} đ
+                      {(100 - previewProduct.discount * 100) / 100 * previewProduct.price} đ
                     </span>
                     {previewProduct.discount > 0 && (
                       <span className="product-origin-price">
-                        {previewProduct.price * (previewProduct.discount / 100)} đ
+                        {previewProduct.price} đ
                       </span>
                     )}
                   </div>
                   <hr className="product-content-line" />
                   <div className="product-color-name">
-                    Màu sắc: <span> {colorSelected?.color.name} </span>
-                  </div>
-                  <div className="product-colors">
-                    <div className="row">
-                      {productColors.map((color, index) => (
-                        <div
-                          key={index}
-                          className={`product-color ${color.id === colorSelected?.id ? 'active' : ''}`}
-                          style={{ backgroundColor: color?.color?.color_code }}
-                          onClick={() => handleSetColor(color)}
-                        />
-                      ))}
-                    </div>
+                    Màu sắc: <span> {previewProduct.color} </span>
                   </div>
                   <div className="product-size-name">
-                    Kích cỡ: <span> L</span>
+                    Kích cỡ: <span> {previewProduct.size}</span>
                   </div>
-                  <div className="product-sizes">
-                    <div className="row">
-                      {colorSelected?.product.map((product, index) => (
-                        <div
-                          key={index}
-                          className={`product-size ${product.id === productSelected?.id ? 'active' : ''}`}
-                          onClick={() => setProductSelected(product)}
-                        >
-                          {PRODUCT_CONSTANT.size[product.size]}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                  <div className="product-stock mt-12px">
-                    {productSelected ? (
-                      <>
-                        Hiện có: <span>{productSelected?.quantity}</span>
-                      </>
-                    ) : (
-                      <span style={{ color: 'orange' }}>
-                        Quý khách vui lòng chọn 'Size'
-                      </span>
-                    )}
 
-                  </div>
                   <hr className="product-content-line" />
                   <div className="product-description">
-                    <span>Mô tả:</span> Mùa đông lạnh bạn vẫn có thể diện những chiếc váy 2 dây, váy hoa điệu đà được mà không lo giá. Mùa đông lạnh bạn vẫn có thể diện những chiếc..
-                  </div>
-                  <div className="product-material mt-12px">
-                    <span>Chất liệu:</span> Vải nhung
+                    <span>Mô tả:</span> {previewProduct.describe}
                   </div>
                   <div className="product-detail-actions">
                     <div className="row">
@@ -173,7 +113,7 @@ export default function PreviewProductModal() {
                       </div>
                       <div
                         className="product-detail-action btn-add-to-cart"
-                        // onClick={handleAddToCart}
+                      // onClick={handleAddToCart}
                       >
                         Sửa
                       </div>

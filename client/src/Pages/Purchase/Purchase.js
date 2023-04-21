@@ -30,7 +30,7 @@ export default function Purchase() {
 
   const handleOrderSubmit = () => {
     const items = cart?.map((item) => {
-      return { id: item.id, quantity: item.quantity }
+      return { id: item._id, quantity: item.quantity }
     })
     const address1 = `${(detailAddress || '')}, ${ward?.name}, ${district?.name}, ${province?.name}`
     if (items) {
@@ -146,12 +146,12 @@ export default function Purchase() {
                     Thanh toán khi nhận hàng
                   </label>
                 </label>
-                {/* <label className="purchase-method" htmlFor="method2">
+                <label className="purchase-method" htmlFor="method2">
                   <input type="radio" className="purchase-method-radio" name="method" id="method2" autoComplete="off" value="value1" />
                   <label className="purchase-option" htmlFor="method2" >
-                    Thanh toán online qua
+                    Thanh toán online
                   </label>
-                </label> */}
+                </label>
                 <hr />
                 <button
                   type="submit"

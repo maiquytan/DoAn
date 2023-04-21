@@ -4,17 +4,7 @@ import './cartItem.css'
 
 export default function CartItem({ data }) {
   const dispatch = useDispatch()
-
-  const {
-    id,
-    name,
-    price,
-    colorProduct,
-    size,
-    quantity,
-  } = data
-
-  const color = colorProduct.color
+  console.log(data)
 
   const handleRemoveFromCart = (product) => {
     dispatch(actions.removeFromCart(product))
@@ -37,38 +27,33 @@ export default function CartItem({ data }) {
     <div className="cart-item">
       <div className="cart-item-wrap row">
         <div className="col-3">
-          <div className="cart-item-image">
-            <img src={colorProduct.image} alt={name} />
+          <div className="cart-item-image" >
+            <img src={data.image} alt={data.name} />
           </div>
         </div>
         <div className="col-9 flex-column">
           <div className="cart-item-content flex-column h-100">
             <div className="cart-item-name space-between">
-              <span>
-                {name}
-              </span>
+              <p>
+                {data.name}
+              </p>
               <i
                 className="fa fa-close"
                 onClick={() => handleRemoveFromCart(data)}
               ></i>
             </div>
             <div className="color-size row">
-              <div
-                className="item-color"
-                style={{
-                  backgroundColor: color.color_code,
-                  borderColor: (color.color_code === 'white' || color.color_code === '#fffff' ? 'gray' : 'white'),
-                  boxSizing: 'border-box',
-                }}
-              />
+              <div className="item-color">
+                {data.color}
+              </div>
               <div className="item-size">
-                {size}
+                {data.size}
               </div>
             </div>
 
             <div className="cart-item-price-quantity bottom space-between">
               <div className="item-price">
-                {`${price} đ`}
+                {`${data.price} đ`}
               </div>
               <div className="item-price row">
                 <button type="submit"
@@ -76,7 +61,7 @@ export default function CartItem({ data }) {
                 >
                   <i className="fa fa-minus"></i>
                 </button>
-                {quantity}
+                {data.quantity}
                 <button type="submit"
                   onClick={handleIncreaseQuantity}
                 >
