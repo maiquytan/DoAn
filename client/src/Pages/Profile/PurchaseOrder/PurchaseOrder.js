@@ -2,17 +2,10 @@ import './purchaseOrder.css'
 import dayjs from 'dayjs'
 
 import { ORDER } from '../../../Constants'
+import { NavLink } from 'react-router-dom'
 
-export default function PurchaseOrder({ data, index }) {
-  const {
-    id,
-    // uuid,
-    // order,
-    status,
-    total_price,
-    created_date,
-    updated_date,
-  } = data
+export default function PurchaseOrder({ data }) {
+  console.log(data,"bbbbbbbbbbbb")
 
   return (
     <>
@@ -23,30 +16,30 @@ export default function PurchaseOrder({ data, index }) {
           </td>
           <td>
             <div className="email">
-              <span>
-                #{index}
-              </span>
+              <p>
+                #{data._id}
+              </p>
             </div>
           </td>
           <td>
-            <div className={`order-status ${ORDER.status[status].style}`}>
-              {ORDER.status[status].name}
+            <div className={`order-status ${ORDER.status[data.status].style}`}>
+              {ORDER.status[data.status].name}
             </div>
           </td>
           <td className="order-price">
-            {total_price}
+            {data.totalAmount}
           </td>
           <td>
-            {dayjs(created_date).format('D/MM YYYY, hh:mm')}
+            {dayjs().format('D/MM YYYY, hh:mm')}
           </td>
           <td>
-            {dayjs(updated_date).format('D/MM YYYY, hh:mm')}
+            {dayjs().format('D/MM YYYY, hh:mm')}
           </td>
           <td>
-            <a href={`order/${id}`} className="detail-btn">
+            <NavLink to={`order/${data._id}`} className="detail-btn">
               <i className="fa fa-eye "></i>
               Xem
-            </a>
+            </NavLink>
           </td>
         </tr>
       )}

@@ -139,6 +139,12 @@ span.product-origin-price {
   font-size: 17px;
 }
 
+.product-size-name select {
+  padding: 5px;
+  width: 80px;
+  outline: none;
+}
+
 .product-sizes {
 
 }

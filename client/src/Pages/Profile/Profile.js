@@ -2,7 +2,8 @@ import './profile.css'
 import { useEffect, useState } from 'react'
 
 import PurchaseOrder from './PurchaseOrder/PurchaseOrder'
-import { getOrdersUser, getUserInfor } from '../../lib'
+import { getOrdersUser } from '../../lib'
+import { useSelector } from 'react-redux'
 
 const fakeProfileData = {
   id: 1,
@@ -15,77 +16,24 @@ const fakeProfileData = {
   address: 'Bảo Châu, Đông La, Đông Hưng, Thái Bình'
 }
 
-const fakeOrdersData = {
-  list: [
-    {
-      id: 1,
-      uuid: '182631273',
-      status: 0,
-      total_price: 120000,
-      created_at: '11/12/2021',
-      updated_at: '11/12/2021'
-    },
-    {
-      id: 1,
-      uuid: '182631273',
-      status: 1,
-      total_price: 200000,
-      created_at: '11/12/2021',
-      updated_at: '11/12/2021'
-    },
-    {
-      id: 1,
-      uuid: '182631273',
-      status: 2,
-      total_price: 120000,
-      created_at: '11/12/2021',
-      updated_at: '11/12/2021'
-    },
-    {
-      id: 1,
-      uuid: '182631273',
-      status: 3,
-      total_price: 120000,
-      created_at: '11/12/2021',
-      updated_at: '11/12/2021'
-    },
-    {
-      id: 1,
-      uuid: '182631273',
-      status: 2,
-      total_price: 120000,
-      created_at: '11/12/2021',
-      updated_at: '11/12/2021'
-    },
-  ]
-}
-
-
-
 export default function Profile() {
-
   const [orders, setOrders] = useState()
-  const [user, setUser] = useState()
-
+  const [user, setUser] = useState({})
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  const accessToken = localStorage.getItem('access_token');
+  console.log(storedUser,"xxxxxxxxxxxxxxxx")
   const sendRequest = async () => {
-    const response = await getOrdersUser()
-    const userResponse = await getUserInfor()
-    if (response?.code) {
-      return response
-    }
-    if (userResponse?.code) {
-      // return response
-    }
-    setUser(userResponse)
-    setOrders(response)
-    return response
+    const response = await getOrdersUser(accessToken)
+    const order = response.filter( x => x.user === storedUser._id )
+    setOrders(order)
+    console.log(order,"55555555555555555")
+    // return response
   }
 
   useEffect(() => {
+    setUser(storedUser)
     sendRequest()
   }, [])
-
-  console.log(user)
 
   return (
     <div className="profile">
@@ -100,7 +48,7 @@ export default function Profile() {
             <div className="row">
               <div className="col-3">
                 <div className="profile-image-frame">
-                  <img className="profile-image" src={user?.avatar || '/images/common/default_profile.jpg'} />
+                  <img className="profile-image" src={user?.image || '/images/common/default_profile.jpg'} />
                 </div>
               </div>
               <div className="col-9">
@@ -109,21 +57,21 @@ export default function Profile() {
                     Thông tin cá nhân:
                   </div>
                   <div className="profile-row">
-                    <span>Họ tên: </span>
+                    <span>Tên: </span>
                     <>
-                      {`${user?.first_name || ''}  ${user?.last_name || ''}`}
+                      {`${user?.lastName || 'Mai'}  ${user?.firstName || 'Tân'}`}
                     </>
                   </div>
                   <div className="profile-row">
                     <span>Giới tính: </span>
                     <>
-                      {Number(user?.gender) === 0 ? 'Nam' : 'Nữ'}
+                      {Number(user?.gender) === 1 ? 'Nam' : 'Nữ'}
                     </>
                   </div>
                   <div className="profile-row">
                     <span>Năm sinh: </span>
                     <>
-                      {user?.birth_year || '01-08-1998'}
+                      {user?.birth_year || '21-05-2001'}
                     </>
                   </div>
                   <div className="profile-row">
@@ -135,13 +83,13 @@ export default function Profile() {
                   <div className="profile-row">
                     <span>Email: </span>
                     <>
-                      {user?.email}
+                      {user?.email || 'maiquytan123@gmail.com'}
                     </>
                   </div>
                   <div className="profile-row">
                     <span>Địa chỉ: </span>
                     <>
-                      {user?.address1 || 'Cổ Dương, Tiên Dương, Đông Anh, Hà Nội'}
+                      {user?.address || 'Dong La, Dong Hung, Thai Binh'}
                     </>
                   </div>
                   {/* <div className="profile-actions">
@@ -177,7 +125,7 @@ export default function Profile() {
             </thead>
             <tbody>
               {orders?.map((item, index) => (
-                <PurchaseOrder key={index} data={item} index={orders.length - index} />
+                <PurchaseOrder key={index} data={item}  />
               ))}
             </tbody>
           </table>

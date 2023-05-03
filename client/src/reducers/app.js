@@ -19,6 +19,7 @@ export const initialState = {
   previewProduct: {},
   favorite: [],
   cart: typeof document !== 'undefined' ? JSON.parse(localStorage.getItem('bibyCart')) || [] : [],
+  order: [],
 }
 console.log(initialState.products, "nnnn");
 const slice = createSlice({
@@ -32,6 +33,7 @@ const slice = createSlice({
       state.login.isFetching = false;
       state.login.currentUser = action.payload;
       state.login.error = false;
+      console.log(state.login.currentUser, "99999999999999")
     },
     loginFailed: (state) => {
       state.login.isFetching = false;
@@ -92,6 +94,12 @@ const slice = createSlice({
 
       localStorage.setItem('bibyCart', JSON.stringify(state.cart))
     },
+    getOrder (state,action) {
+      state.order = action.payload;
+    },
+    createOrder (state,action) {
+      state.order = [...state.order, action.payload]
+    },
     addToCart(state, action) {
       const isProductExist = state.cart.find(item => item._id === action.payload._id)
       if (isProductExist) {
@@ -131,10 +139,5 @@ const slice = createSlice({
 
 export const { actions } = slice
 export const { loginStart, loginSuccess, loginFailed, registerStart, registerSuccess, registerFailed, getProduct, getBlog, setPreviewProduct, setFavoriteProduct } = slice.actions;
-// export const useDashboardSlice = () => {
-//   useInjectReducer({ key: slice.name, reducer: slice.reducer })
-//   useInjectSaga({ key: slice.name, saga: dashboardSaga })
-//   return { actions: slice.actions }
-// }
 
 export default slice.reducer

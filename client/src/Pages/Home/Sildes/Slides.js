@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import './slides.css'
 
 const fakeSlidesData = [
@@ -40,9 +41,9 @@ export default function Slides() {
                     {item.description}
                   </p>
                   <div className="slide-btn-frame">
-                    <a href={item.url} className="slide-btn" style={{ backgroundColor: item.button_color }}>
+                    <NavLink to={item.url} className="slide-btn" style={{ backgroundColor: item.button_color }}>
                       {item.button}
-                    </a>
+                    </NavLink>
                   </div>
                 </div>
               </div>

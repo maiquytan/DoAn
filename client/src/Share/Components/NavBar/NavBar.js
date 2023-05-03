@@ -5,29 +5,41 @@ import { useHistory } from 'react-router-dom'
 import Cart from '../Cart/Cart'
 import { LINK } from '../../../Constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { actions } from '../../../reducers/app'
 
 export default function NavBar() {
   const dispatch = useDispatch()
   const pathname = (window.location.pathname)
+  console.log(pathname, "22222222222222222")
   const history = useHistory()
-  const user = useSelector((state) => state.app.login.currentUser)
-  console.log("name",user)
   const cart = useSelector(state => state.app.cart) || []
-
   const [isDropdown, setIsDropdown] = useState(false)
+  const [user, setUser] = useState(localStorage.getItem('user') || '')
 
   const cartCount = cart?.reduce(
     (accumulator, currentValue) => accumulator + currentValue.quantity,
     0
   );
+  const accessToken = localStorage.getItem('access_token');
+  const expireTime = localStorage.getItem('expireTime');
+  const storedUser = JSON.parse(localStorage.getItem('user'));
+  console.log(storedUser);
 
-  // console.log(isLogedIn)
-  // console.log(getCookie('access_token'))
+  useEffect(() => {
+    if (storedUser) {
+      setUser(storedUser);
+    }
+    if(!storedUser) {
+      setUser('');
+    }
+  }, []);
 
   const handleLogout = () => {
     dispatch(actions.logout())
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('expireTime');
+    localStorage.removeItem('user');
     setIsDropdown(false)
     history.push(`/login`)
   }
@@ -74,7 +86,7 @@ export default function NavBar() {
                 <input type="checkbox" className="cart-check hidden-check" name="cart-checkbox" id="cart-check" autoComplete="off" />
                 <Cart />
               </li>
-              {user ? (
+              {accessToken&& user ? (
                 <li
                   className={`nav-item ${'/profile' === pathname ? 'active' : ''}`}
                   style={{ position: 'relative', minHeight: 35, minWidth: 35, display: 'flex', justifyContent: 'center' }}
@@ -82,7 +94,6 @@ export default function NavBar() {
                 >
                   <p className="username">{user.firstName}</p>
                   <i className="fa fa-user-circle" />
-                  {/* </a> */}
                   <div className={`dropdown-login ${isDropdown ? 'dropdown' : ''}`}>
                     <ul style={{ padding: 0 }}>
                       <li>
@@ -95,7 +106,6 @@ export default function NavBar() {
                       </li>
                     </ul>
                   </div>
-
                 </li>
               ) : (
                 < div className="nav-login-btn">

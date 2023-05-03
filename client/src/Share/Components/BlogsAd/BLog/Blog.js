@@ -1,16 +1,17 @@
+import { NavLink } from 'react-router-dom'
 import './blog.css'
 
 export default function Blog({ data }) {
-  
+
   return (
     <div className="blog">
       {data && (
         <>
-          <a href={`/blogdetail`}>
+          <NavLink to="/blogdetail">
             <div className="blog-image" style={{ background: 'url(' + data.thumbnail + ')' }}>
 
             </div>
-          </a>
+          </NavLink>
           <div className="blog-date">
             {data.created_at}
           </div>

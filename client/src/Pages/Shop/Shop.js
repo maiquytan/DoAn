@@ -54,8 +54,8 @@ export default function Shop() {
 		<div className="shop">
 			<div className="products-bar container">
 				<div className="products-top-bar row">
-					<h1 className="hidden">Shop</h1>
-					<div className="products-by-gender col-4">
+					{/* <h1 className="hidden">Shop</h1> */}
+					{/* <div className="products-by-gender col-4">
 						<input type="radio" className="gender-check hidden-check" name="options" id="option1" autoComplete="off" defaultChecked />
 						<label className="gender-option" htmlFor="option1" >
 							Tất cả sản phẩm
@@ -68,7 +68,7 @@ export default function Shop() {
 						<label className="gender-option" htmlFor="option3" >
 							Nữ
 						</label>
-					</div>
+					</div> */}
 					<div className="col-4">
 						<div className="products-search">
 							<form className="form-inline" onSubmit={handleSearch}>
@@ -91,13 +91,13 @@ export default function Shop() {
 							</form>
 						</div>
 					</div>
-					<div className="col-4 flex-right">
+					{/* <div className="col-4 flex-right">
 						<label className="products-filter-btn" htmlFor="filter">
 							Filter <i className="fa fa-sliders"></i>
 						</label>
-					</div>
+					</div> */}
 				</div>
-				<div className="products-filter">
+				{/* <div className="products-filter">
 					<input className="filter-check hidden-check" name="filter" id="filter"
 						type="checkbox" autoComplete="off"
 					/>
@@ -249,7 +249,7 @@ export default function Shop() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 			<div className="products container">
 				<div className="row product-lists">

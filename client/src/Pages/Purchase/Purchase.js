@@ -1,11 +1,11 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import './purchase.css'
 import PurchaseProduct from './PurchaseProduct/PurchaseProduct'
 
 import { VIETNAM_PROVINCE } from '../../Constants/detailAdress'
 import { useEffect, useState } from 'react'
 import { createOrder } from '../../lib'
-import { getCookie } from '../../helper'
+import { actions } from '../../reducers/app'
 
 export default function Purchase() {
 
@@ -14,11 +14,14 @@ export default function Purchase() {
   const totalPrice = cart.reduce((total, value) => {
     return total + (value.price * value.quantity)
   }, 0)
-
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false);
+  const dispatch = useDispatch();
+  const [payAction, setPayAction] = useState(false)
   const [province, setProvince] = useState(null)
   const [district, setDistrict] = useState(null)
   const [ward, setWard] = useState(null)
   const [detailAddress, setDetailAddress] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setDistrict(null)
@@ -28,20 +31,38 @@ export default function Purchase() {
     setWard(null)
   }, [district])
 
+  const handlePayQR = () => {
+    setPayAction(!payAction)
+  }
+  const handleConfirm = () => {
+    // Xử lý khi người dùng đồng ý mua hàng
+    console.log("Đã mua hàng");
+    setIsLoading(true);
+    dispatch(actions.clearCart())
+    // setShowConfirmDialog(true);
+  };
+
+  const handleCancel = () => {
+    // Xử lý khi người dùng từ chối mua hàng
+    console.log("Mua hàng bị huỷ bỏ");
+    setShowConfirmDialog(false);
+  };
+
   const handleOrderSubmit = () => {
+    setShowConfirmDialog(true);
     const items = cart?.map((item) => {
       return { id: item._id, quantity: item.quantity }
     })
-    const address1 = `${(detailAddress || '')}, ${ward?.name}, ${district?.name}, ${province?.name}`
+    const accessToken = localStorage.getItem("access_token");
+    const address = `${(detailAddress || '')}, ${ward?.name}, ${district?.name}, ${province?.name}`
     if (items) {
       const params = {
-        address1,
+        address,
         items,
-        access_token: getCookie('access_token')
       }
       const sendResquest = async () => {
-        const response = await createOrder(params)
-        console.log(response)
+        const response = await createOrder(params, accessToken)
+        dispatch(createOrder(params))
       }
       sendResquest()
     }
@@ -49,6 +70,7 @@ export default function Purchase() {
 
   return (
     <div className="purchase">
+      <div className={showConfirmDialog === true || payAction === true ? "wraper" : ""}></div>
       <div className="container" >
         <div className="wrap top-page" style={{ background: "#b7b7b7" }}>
           Đơn đặt hàng
@@ -141,17 +163,24 @@ export default function Purchase() {
                 <hr />
                 <span>Phương thức thanh toán:</span>
                 <label className="purchase-method" htmlFor="method1">
-                  <input type="radio" className="purchase-method-radio" name="method" id="method1" autoComplete="off" value="value1" checked={true} readOnly />
+                  <input type="radio" className="purchase-method-radio" name="method" id="method1" autoComplete="off" value="value1" />
                   <label className="purchase-option" htmlFor="method1" >
                     Thanh toán khi nhận hàng
                   </label>
                 </label>
-                <label className="purchase-method" htmlFor="method2">
+                <label className="purchase-method" htmlFor="method2" onClick={handlePayQR}>
                   <input type="radio" className="purchase-method-radio" name="method" id="method2" autoComplete="off" value="value1" />
                   <label className="purchase-option" htmlFor="method2" >
                     Thanh toán online
                   </label>
                 </label>
+                {payAction &&
+                  <div className="confirm-dialog-QR">
+                    <i className="fa fa-times fa-2x" aria-hidden="true" onClick={handlePayQR}></i>
+                    <h2>Thanh toán bằng QR code </h2>
+                    <img src={`https://img.vietqr.io/image/970422-9704229270867059-compact2.jpg?amount=${totalPrice}`} alt='pay' title='pay' />
+                  </div>
+                }
                 <hr />
                 <button
                   type="submit"
@@ -160,11 +189,40 @@ export default function Purchase() {
                 >
                   Thanh toán
                 </button>
+                {showConfirmDialog && (
+                  isLoading === false ? (
+                    <div className="confirm-dialog">
+                      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                      <span class="sr-only">Loading...</span>
+                      <h3> Bạn có chắc chắn muốn mua hàng</h3>
+                      <div>
+                        <button className="confirm-dialog-button" onClick={handleConfirm}>
+                          Xác Nhận
+                        </button>
+                        <button className="confirm-dialog-button" onClick={handleCancel}>
+                          Hủy
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="confirm-dialog">
+                      <div className="img-cofirm">
+                      <i className="fa fa-check-circle fa-5x" aria-hidden="true"></i>
+                      </div>
+                      <h2>Đặt hàng thành công</h2>
+                      <p>Cảm ơn đã tin tưởng và đặt hàng sản phẩm của chúng tôi, bạn vui lòng check lại gmail, và chúng tôi sẽ liên hệ lại với bạn </p>
+                      <button className="confirm-dialog-button" onClick={handleCancel}>
+                        OK
+                      </button>
+                    </div>
+
+                  ))}
+
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </div >
   )
 }

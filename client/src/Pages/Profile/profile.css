@@ -1,6 +1,6 @@
 .profile {
     background: #f8f9fd;
-    padding: 1px 0px 24px 0px;    
+    padding: 1px 0px 24px 0px;
 }
 
 .profile-detail {
@@ -20,6 +20,7 @@
 .profile-detail-content {
     margin: 12px;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     height: calc(100% - 27px);
 }

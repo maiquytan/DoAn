@@ -3,15 +3,16 @@ import { useState } from 'react'
 
 import { register } from '../../lib'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 export default function Register() {
   const dispatch = useDispatch();
   const history = useHistory()
   const [username, setUsername] = useState()
   const [phone, setPhone] = useState()
+  const [email, setEmail] = useState()
   const [firstName, setFirstName] = useState()
-  const [address1, setAddress1] = useState()
+  const [address, setAddress] = useState()
   const [password, setPassword] = useState()
   const [confirmPassword, setConfirmPassword] = useState()
   const [isSuccess, setIsSuccess] = useState()
@@ -23,12 +24,15 @@ export default function Register() {
       username: username,
       password: password,
       firstName: firstName,
+      phone: phone,
+      email: email,
+      address: address,
     };
-    register(newUser,dispatch,history);
-    if(isPasswordMatch && register.username !== username) {
+    register(newUser, dispatch, history);
+    if (isPasswordMatch && register.username !== username) {
       setIsSuccess(true);
       history.push("/login");
-    }else {
+    } else {
       setIsSuccess(false)
     }
   }
@@ -41,8 +45,8 @@ export default function Register() {
           <h3 className="register-title">
             Đăng ký
           </h3>
-          {isSuccess===false && <p style={{ color: 'brown' }}>Mật khẩu không khớp </p>}
-          {isSuccess===true && <p style={{ color: 'green' }}>Bạn đã đăng ký thành công!</p>}
+          {isSuccess === false && <p style={{ color: 'brown' }}>Mật khẩu không khớp </p>}
+          {isSuccess === true && <p style={{ color: 'green' }}>Bạn đã đăng ký thành công!</p>}
           <div className="register-form-group">
             <input
               type="text"
@@ -65,6 +69,15 @@ export default function Register() {
             <input
               type="text"
               className="register-input"
+              id="register-input-1"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              className="register-input"
               id="register-input-4"
               placeholder="Điện thoại"
               value={phone}
@@ -76,8 +89,8 @@ export default function Register() {
               className="register-input"
               id="register-input-6"
               placeholder="Địa chỉ"
-              value={address1}
-              onChange={e => setAddress1(e.target.value)}
+              value={address}
+              onChange={e => setAddress(e.target.value)}
               required
             />
             <input
@@ -105,7 +118,7 @@ export default function Register() {
           >
             Đăng ký
           </button>
-          <a href="/login" className="link-to text-center"> Đăng nhập </a>
+          <NavLink to="/login" className="link-to text-center"> Đăng nhập </NavLink>
         </form>
       </div>
     </div>

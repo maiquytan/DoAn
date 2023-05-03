@@ -60,20 +60,20 @@
     box-shadow: 0px 0px 4px 0px grey;
 }
 
-.order-status.wait {
+.order-status.pending {
     /* color: gray; */
     color: orange;
 }
 
-.order-status.transporting {
+.order-status.processing {
     color: darkgoldenrod;
 }
 
-.order-status.received {
+.order-status.shipped {
     color: darkgreen;
 }
 
-.order-status.cancel {
+.order-status.delivered {
     color: darkred;
 }
 
@@ -84,4 +84,8 @@
 
 .detail-btn i{
     margin-right: 3px;
+}
+
+.email {
+    width: fit-content;
 }

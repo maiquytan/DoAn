@@ -9,10 +9,10 @@ import { actions } from '../../reducers/app'
 export default function PreviewProductModal() {
   const dispatch = useDispatch()
   const [productSize, setProductSize] = useState()
-  const [productSelected, setProductSelected] = useState(null)
+  // const [productSelected, setProductSelected] = useState(null)
 
   const previewProduct = useSelector(state => state.app.previewProduct)
-  console.log(previewProduct)
+  console.log(previewProduct.size)
 
   const handleCloseModal = () => {
     dispatch(actions.clearPreviewProduct())
@@ -34,21 +34,21 @@ export default function PreviewProductModal() {
   //   }
   // }, [previewProduct])
 
-  useEffect(() => {
-    setProductSelected(null)
-  }, [])
+  // useEffect(() => {
+  //   setProductSelected(null)
+  // }, [])
 
   const handleAddToCart = () => {
-      const productParams = {
-        _id: previewProduct._id,
-        image: previewProduct.image,
-        name: previewProduct.name,
-        color: previewProduct.color,
-        price: cost,
-        quantity: 1
-      }
-      dispatch(actions.addToCart(productParams))
-      handleCloseModal()
+    const productParams = {
+      _id: previewProduct._id,
+      image: previewProduct.image,
+      name: previewProduct.name,
+      color: previewProduct.color,
+      price: cost,
+      quantity: 1
+    }
+    dispatch(actions.addToCart(productParams))
+    handleCloseModal()
   }
 
   return (
@@ -64,7 +64,7 @@ export default function PreviewProductModal() {
               </div>
               <div className="product-detail-wrap">
                 <div className="product-image-frame col-6">
-                  <div className="product-image" style={{ background: 'url(' +  previewProduct.image + ')' }}>
+                  <div className="product-image" style={{ background: 'url(' + previewProduct.image + ')' }}>
                   </div>
                 </div>
                 <div className="product-content col-4">
@@ -77,7 +77,7 @@ export default function PreviewProductModal() {
 
                   <div className="product-price mt-12px">
                     <span className="product-update-price">
-                    {cost} đ
+                      {cost} đ
                     </span>
                     {previewProduct.discount > 0 && (
                       <span className="product-origin-price">
@@ -94,11 +94,15 @@ export default function PreviewProductModal() {
                   </div>
                   <div className="product-size-name away">
                     Kích cỡ: <span>
-                      <select></select>
-                    {previewProduct.size}
+                      <select value={productSize} onChange={(e) => setProductSize(e.target.value)}>
+                        <option value="">-- Chọn kích cỡ --</option>
+                        {previewProduct.size?.map((option,index) => (
+                          <option key={index} value={option}>{option}</option>
+                        ))}
+                      </select>
                     </span>
                   </div>
-                  <div className="product-sizes">
+                  {/* <div className="product-sizes">
                     <div className="row">
                       {previewProduct.size?.map((product, index) => (
                         <div
@@ -110,7 +114,7 @@ export default function PreviewProductModal() {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </div> */}
                   <hr className="product-content-line" />
                   <div className="away">
                     Trạng thái : {previewProduct.status}

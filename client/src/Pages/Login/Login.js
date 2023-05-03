@@ -1,7 +1,7 @@
 import './login.css'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { NavLink, useHistory } from 'react-router-dom'
 
 import { login } from '../../lib'
 
@@ -11,7 +11,6 @@ export default function Login() {
 
   const [username, setUsername] = useState()
   const [password, setPassword] = useState()
-  const [isSuccess, setIsSuccess] = useState()
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -20,11 +19,6 @@ export default function Login() {
       password: password
     };
     login(newUser,dispatch,history);
-    if(login.username !== username){
-      setIsSuccess(false);
-    }else if(login.username === username) {
-      setIsSuccess(true);
-    }
   }
 
   return (
@@ -34,8 +28,7 @@ export default function Login() {
           <h3 className="login-title">
             Đăng nhập
           </h3>
-          {isSuccess===false && <p style={{ color: 'brown' }}>Tên tài khoản hoặc mật khẩu không đúng </p>}
-          {isSuccess===true && <p style={{ color: 'green' }}>Đăng nhập thành công!</p>}
+
           <div className="login-form-group">
             <input
               type="text"
@@ -57,9 +50,9 @@ export default function Login() {
           <button type="submit" className="login-btn">
             Đăng nhập
           </button>
-          <a href="/register" className="link-to text-center"
+          <NavLink to="/register" className="link-to text-center"
             style={{ marginTop: "60px", color: "#b10606" }}
-          > Bạn chưa có tài khoản? </a>
+          > Bạn chưa có tài khoản? </NavLink>
           <p> Hoặc đăng nhập với</p>
           <div className="login-ways row">
             <div className="login-way facebook-way col-4">

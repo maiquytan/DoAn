@@ -18,7 +18,8 @@ export default function Product({ data }) {
       <td>
         <div className='table-product-name'>
           <div className='row'>
-            <img src={data?.image} alt='' />
+          <div className="product-image" style={{ background: 'url(' + data.image + ')' }}>
+            </div>
             <span>
               {data?.name}
             </span>

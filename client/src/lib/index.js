@@ -4,7 +4,7 @@ import axios from 'axios';
 import { loginFailed, loginStart, loginSuccess, registerFailed, registerStart, registerSuccess } from '../reducers/app.js';
 
 
-export const register = async (user,dispatch,history) => {
+export const register = async (user, dispatch, history) => {
   dispatch(registerStart());
   try {
     await axios.post('http://localhost:4000/api/auth/register', user);
@@ -15,10 +15,13 @@ export const register = async (user,dispatch,history) => {
   }
 }
 
-export const login = async (user,dispatch,history) => {
+export const login = async (user, dispatch, history) => {
   dispatch(loginStart());
   try {
     const res = await axios.post('http://localhost:4000/api/auth/login', user);
+    localStorage.setItem("access_token", res.data.access_token);
+    localStorage.setItem("user", JSON.stringify(res.data));
+    localStorage.setItem('expireTime', new Date().getTime() + 3600000);
     dispatch(loginSuccess(res.data))
     history.push("/");
   } catch (error) {
@@ -37,7 +40,7 @@ export const getUserInfor = async (params) => {
   }
 }
 
-export const getBaseProduct = async ( page ) => {
+export const getBaseProduct = async (page) => {
   try {
     const response = await api.get(`api/product?page=${page}`);
     return response.data
@@ -45,7 +48,7 @@ export const getBaseProduct = async ( page ) => {
     return null
   }
 }
-export const getBlogs = async ( page ) => {
+export const getBlogs = async (page) => {
   try {
     const response = await api.get(`api/blog/`);
     return response.data
@@ -54,21 +57,24 @@ export const getBlogs = async ( page ) => {
   }
 }
 
-export const createOrder = async (params) => {
+export const createOrder = async (params, accessToken) => {
   try {
-    const response = await api.post(`/orders/`, params, {
-      headers: { Authorization: `Bearer ${getCookie('access_token')}`, }
+    const response = await api.post('api/order/createOrder',JSON.stringify(params),{
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      },
     });
-    return response.data
+
+    return await response.json();
   } catch (error) {
-    return error.response.data || null
+    return error.response.data || null;
   }
 }
 
-export const getOrdersUser = async (params) => {
+export const getOrdersUser = async (accessToken) => {
   try {
-    const response = await api.get(`/orders/user`, {
-      headers: { Authorization: `Bearer ${params || getCookie('access_token')}`, }
+    const response = await api.get(`api/order/user`, {
+      headers: { Authorization: `Bearer ${accessToken}` }
     });
     return response.data
   } catch (error) {

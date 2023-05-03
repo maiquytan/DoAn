@@ -27,10 +27,10 @@ export const LINK = {
 
 export const ORDER = {
   status: {
-    0: { name: 'Chờ đóng hàng', style: 'wait' },
-    1: { name: 'Đang vận chuyển', style: 'transporting' },
-    2: { name: 'Đã nhận', style: 'received' },
-    3: { name: 'Bị hủy', style: 'cancel' },
+    'pending': { name: 'Chờ đóng hàng', style: 'pending' },
+    'processing': { name: 'Đang vận chuyển', style: 'processing' },
+    'shipped': { name: 'Đã nhận', style: 'shipped' },
+    'delivered': { name: 'Bị hủy', style: 'delivered' },
   }
 }
 

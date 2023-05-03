@@ -12,7 +12,7 @@ export default function BlogsAd({ blogs }) {
       <div className='blogs-ad-content'>
         <div className='container '>
           <div className='row blogs'>
-            {blogs?.map((item, index) => (
+            {blogs?.slice(0,3).map((item, index) => (
               <div className='col-4' key={index}>
                 <Blog data={item} />
               </div>

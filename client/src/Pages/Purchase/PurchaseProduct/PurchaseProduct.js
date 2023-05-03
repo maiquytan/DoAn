@@ -58,7 +58,7 @@ export default function PurchaseProduct({ data }) {
           >
             <i className="fa fa-plus"></i>
           </div> */}
-          <input type="number" name="quantity" className="quantity form-control input-number" defaultValue={2} min={1} max={100} onKeyDown="return false"
+          <input type="number" name="quantity" className="quantity form-control input-number" min={1} max={100} onKeyDown="return false"
             value={data.quantity}
             onChange={(e) => handleChangeQuantity(e.target.value)}
           />
