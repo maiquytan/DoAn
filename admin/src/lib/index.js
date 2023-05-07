@@ -1,6 +1,6 @@
 import { api } from '../api';
 import { getCookie } from '../helper';
-import { getAllUser, removeUser } from '../reducers/app';
+import { getAllUser, removeOrder, removeUser } from '../reducers/app';
 // import axios from 'axios';
 
 export const register = async (params) => {
@@ -20,14 +20,12 @@ export const login = async (params) => {
     return error.response.data
   }
 }
-export const getUsers = async (dispatch) => {
+export const getUsers = async (page) => {
   try {
-    const response = await api.get('api/user/');
-    console.log(response.data)
-    dispatch(getAllUser(response.data))
-
+    const response = await api.get(`api/user?page=${page}`);
+    return response.data
   } catch (error) {
-    return error
+    return null
   }
 }
 export const deleteUsers = async (id,dispatch) => {
@@ -70,26 +68,42 @@ export const getProductColorsByBaseProductId = async (params) => {
 
 export const createOrder = async (params) => {
   try {
-    const response = await api.post(`/orders/`, params);
+    const response = await api.post(`api/order/`, params);
     return response.data
   } catch (error) {
     return error.response.data || null
   }
 }
 
-
-export const getOrders = async (params) => {
+export const createProduct = async (params) => {
   try {
-    const response = await api.get(`/orders/`);
+    const response = await api.post(`api/product/create`, params);
     return response.data
   } catch (error) {
     return error.response.data || null
+  }
+}
+
+export const getOrders = async (page) => {
+  try {
+    const response = await api.get(`api/order/?page=${page}`);
+    return response.data
+  } catch (error) {
+    return error.response.data || null
+  }
+}
+export const deleteOrders = async (id,dispatch) => {
+  try {
+    await api.delete('api/order/'+ id);
+    dispatch(removeOrder(id))
+  } catch (error) {
+    return error
   }
 }
 
 export const getOrderDetail = async (id) => {
   try {
-    const response = await api.get(`/orders/${id}/`);
+    const response = await api.get(`api/order/${id}/`);
     return response.data
   } catch (error) {
     console.log(error)
@@ -97,33 +111,6 @@ export const getOrderDetail = async (id) => {
   }
 }
 
-
-export const getSizes = async (params) => {
-  try {
-    const response = await api.get(`/sizes/`);
-    return response.data
-  } catch (error) {
-    return null
-  }
-}
-
-export const getTypes = async (params) => {
-  try {
-    const response = await api.get(`/types/`);
-    return response.data
-  } catch (error) {
-    return error.response.data || null
-  }
-}
-
-export const getColors = async (params) => {
-  try {
-    const response = await api.get(`/colors/`);
-    return response.data
-  } catch (error) {
-    return error.response.data || null
-  }
-}
 
 export const getInputs = async (params) => {
   try {

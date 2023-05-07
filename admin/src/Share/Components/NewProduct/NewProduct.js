@@ -33,21 +33,16 @@ export default function NewBaseProduct({ addBaseProductSuccess, turnOffDialog })
   //   setDisplayImage(updateImage)
   // }, [image])
 
-  useEffect(() => {
-    const sendRequest = async () => {
-      const response = await getTypes()
-      const colorResponse = await getColors()
-      if (response) {
-        setTypes(response.results)
-        setType(Number(response.results[0].id))
-      }
-      if (colorResponse) {
-        setColors(colorResponse.results)
-        setColor(Number(colorResponse.results[0].id))
-      }
-    }
-    sendRequest()
-  }, [])
+  // useEffect(() => {
+  //   const sendRequest = async () => {
+  //     const response = await getTypes()
+  //     if (response) {
+  //       setTypes(response.results)
+  //       setType(Number(response.results[0].id))
+  //     }
+  //   }
+  //   sendRequest()
+  // }, [])
 
   const handleCreateBaseProduct = (e) => {
     e.preventDefault()

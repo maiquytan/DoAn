@@ -1,4 +1,5 @@
 import './sideBar.css'
+import { NavLink } from 'react-router-dom'
 
 export default function SideBar() {
   return (
@@ -13,16 +14,16 @@ export default function SideBar() {
           Tổng quát
         </div>
         <ul className='sidebar-items'>
-          <a href='/'>
+          <NavLink to='/'>
           <li className='sidebar-item'>
              <i className='fa fa-home'></i> Home
           </li>
-          </a>
-          <a href='/users'>
+          </NavLink>
+          <NavLink to='/users'>
             <li className='sidebar-item'>
             <i className='fa fa-address-book'></i> Quản lý tài khoản
             </li>
-          </a>
+          </NavLink>
         </ul>
         <hr/>
         <div className='sidebar-categorys'>
@@ -32,16 +33,16 @@ export default function SideBar() {
           {/* <li className='sidebar-item'>
              <i className='fa fa-shopping-bag'></i> Tạo hóa đơn thanh toán
           </li> */}
-          <a href='/products'>
+          <NavLink to='/products'>
             <li className='sidebar-item'>
             <i className='fa fa-suitcase'></i> Quản lý sản phẩm
             </li>
-          </a>
-          <a href='/orders'>
+          </NavLink>
+          <NavLink to='/orders'>
             <li className='sidebar-item'>
             <i className='fa fa-cubes'></i> Quản lý đơn hàng
             </li>
-          </a>
+          </NavLink>
           {/* <li className='sidebar-item'>
           <i className='fa fa-list-ul'></i> Quản lý danh mục
           </li> */}
@@ -52,11 +53,11 @@ export default function SideBar() {
           Nhập hàng
         </div>
         <ul className='sidebar-items'>
-          <a href='/inputs'>
+          <NavLink to='/inputs'>
             <li className='sidebar-item'>
               <i className='fa fa-linode'></i> Quản lý nhập hàng
             </li>
-          </a>
+          </NavLink>
         </ul>
         <hr/>
         {/* <div className='sidebar-categorys'>

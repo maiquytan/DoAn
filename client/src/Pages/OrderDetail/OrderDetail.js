@@ -7,14 +7,14 @@ import { getOrderDetail } from '../../lib'
 import { ORDER } from '../../Constants'
 
 export default function OrderDetail() {
-  const { id } = useParams()
+  const { _id } = useParams()
 
   const [orderDetail, setOrderDetail] = useState()
-  const status = orderDetail ? orderDetail[0]?.order.status : 0
-
+  // const status = orderDetail ? orderDetail[0]?.order.status : 0
+  console.log(orderDetail,"xxxxxxxxxxxxxxxxxxxx")
   useEffect(() => {
     const sendRequest = async () => {
-      const response = await getOrderDetail(id)
+      const response = await getOrderDetail(_id)
       if (response) {
         setOrderDetail(response)
       }
@@ -22,9 +22,9 @@ export default function OrderDetail() {
     sendRequest()
   }, [])
 
-  const totalPrice = orderDetail?.reduce((total, value) => {
-    return total + (value.product.price * value.quantity)
-  }, 0)
+  // const totalPrice = orderDetail?.reduce((total, value) => {
+  //   return total + (value.product.price * value.quantity)
+  // }, 0)
 
   return (
     <div className='purchase'>
@@ -50,9 +50,9 @@ export default function OrderDetail() {
                     </tr>
                   </thead>
                   <tbody>
-                    {orderDetail?.map((item, index) => (
+                    {/* {orderDetail.product?.map((item, index) => (
                       <PurchaseProduct data={item} key={index} />
-                    ))}
+                    ))} */}
                   </tbody>
                 </table>
               </div>
@@ -69,12 +69,12 @@ export default function OrderDetail() {
                   <span>Số điện thoại: </span> 01234345798
                 </div>
                 <div className='purchase-detail-address mt-6px'>
-                  <span>Địa chỉ nhận hàng: </span> {orderDetail ? orderDetail[0]?.order.address1 : ''}
+                  {/* <span>Địa chỉ nhận hàng: </span> {orderDetail ? orderDetail[0]?.order.address : ''} */}
                 </div>
                 <hr className='mt-12px' />
                 <div className='purchase-detail-price mt-12px'>
                   <div>Giá gốc:</div>
-                  <div>{totalPrice} đ</div>
+                  {/* <div>{totalPrice} đ</div> */}
                 </div>
                 <div className='purchase-detail-price mt-6px'>
                   <div>Giảm giá:</div>
@@ -83,16 +83,16 @@ export default function OrderDetail() {
                 </div>
                 <div className='purchase-detail-price'>
                   <span>Giá thanh toán:</span>
-                  <span>{totalPrice} đ</span>
+                  {/* <span>{totalPrice} đ</span> */}
                 </div>
 
                 <hr />
 
                 <div>
                   <span>Trạng thái hóa đơn: </span>
-                  <span className={`order-status ${ORDER.status[status].style}`}>
-                    {ORDER.status[status].name}
-                  </span>
+                  {/* <span className={`order-status ${ORDER.status[status].style}`}> */}
+                    {/* {ORDER.status[status].name}
+                  </span> */}
                 </div>
               </div>
             </div>

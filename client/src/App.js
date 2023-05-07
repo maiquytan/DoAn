@@ -30,11 +30,8 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-
         <Router>
-
           <NavBar />
-
           <Switch>
             <Route exact path="/">
               <Home />

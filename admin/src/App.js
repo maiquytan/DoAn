@@ -24,10 +24,11 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <SideBar />
-        <div style={{ width: 'calc(100% - 260px)', backgroundColor: '#E8E8E8' }}>
-          <TopBar />
-          <Router>
+        <Router>
+          <SideBar />
+          <div style={{ width: 'calc(100% - 260px)', backgroundColor: '#E8E8E8' }}>
+
+            <TopBar />
             <Switch>
 
               <Route exact path="/">
@@ -59,9 +60,9 @@ function App() {
               </Route>
 
             </Switch>
-          </Router>
-          <PreviewProductModal />
-        </div>
+          </div>
+        </Router>
+        <PreviewProductModal />
       </div>
     </Provider>
   );

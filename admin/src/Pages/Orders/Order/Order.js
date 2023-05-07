@@ -3,26 +3,20 @@ import './order.css'
 import dayjs from 'dayjs'
 import { ORDER } from '../../../Constants'
 
-export default function Order({ data }) {
+export default function Order({ data ,handleDeleteClick }) {
 
   // console.log(data.status)
   return (
+    <tbody>
     <tr className='admin-td'>
-      <td>
-        <div className='table-client-name'>
-          <div className='row'>
-            <img src={data.user?.image || '/images/common/default_profile.jpg'} alt='' />
-            <span>
-              {data.client?.username || 'Anonymous'}
-            </span>
-          </div>
-        </div>
+      <td style={{ textAlign: 'center' }} className='table-client-name'>
+          #{data?._id}
       </td>
       <td>
         {dayjs(data.created_date).format('MM/d YYYY, hh:mm')}
       </td>
       <td>
-        {data?.total_price} VND
+        {data?.totalAmount} VND
       </td>
       {/* <td>1232534641423</td> */}
       <td>
@@ -40,11 +34,12 @@ export default function Order({ data }) {
           <button className='table-update'>
             <i className='fa fa-pencil-square-o'></i>
           </button>
-          <button className='table-delete' style={{ color: 'brown' }}>
+          <button className='table-delete' style={{ color: 'brown' }} onClick={()=>handleDeleteClick(data)}>
             <i className='fa fa-trash'></i>
           </button>
         </div>
       </td>
     </tr>
+    </tbody>
   )
 }

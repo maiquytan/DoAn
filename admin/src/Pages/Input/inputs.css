@@ -1,181 +1,36 @@
-option:before {
-    content: ">";
-    font-size: 20px;
-    display: none;
-    padding-right: 10px;
-    padding-left: 5px;
-    color: #fff;
-}
-
-select#gender option[value="male"] {
-    background: red;
-    font-size: 30px;
-}
-
-/* select#gender option[value="female"] { background-image:url(female.png); }
-select#gender option[value="others"] { background-image:url(others.png); } */
-
-.admin-cell-td {
-    align-items: center;
-}
-
-.admin-cell-td.product-img {
-    position: relative;
-}
-
-.admin-cell-td img {
-    height: 46px;
-}
-
-.admin-cell-td.product-img img {
-    width: 38px;
-    height: 48px;
-    object-fit: cover;
-}
-
-.admin-cell-td input {
-    height: 30px;
-    /* width: 240px; */
-    padding: 0px 6px;
-    margin-left: 6px;
-}
-
-.admin-cell-td select {
-    height: 30px;
-    /* width: 240px; */
-    padding: 0px 6px;
-    margin-left: 6px;
-}
-
-.admin-cell-td select option {
-    height: 30px;
-    padding: 8px 16px;
-}
-
-.admin-cell-td button {
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 6px;
-    padding-top: 3px;
-    color: green;
-    border: solid 1px green;
-    background: transparent;
-    border-radius: 3px;
-    cursor: pointer;
-}
-
-.admin-cell-td button:hover {
-    background-color: aliceblue;
-}
-
-.admin-color-td {
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    border: solid 3px gray;
-}
-
-.admin-size-td {
-    height: 30px;
-    width: 30px;
-    border: solid 3px gray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: gray;
-    font-size: 15px;
-    font-weight: 500;
-}
-
-.color-td input {
-    width: 160px;
-}
-
-.size-td input {
-    width: 70px;
-}
-
-.quantity-td input {
-    width: 100px;
-}
-
-.money-td input {
-    width: 160px;
-}
-
-.btn-input-plus button {
-    height: 30px;
-    width: 60px;
-    padding-top: 3px;
-    background: transparent;
-    border: solid 1px blue;
-    color: blue;
-    border-radius: 3px;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.btn-input-plus button:hover {
-    background: blue;
-    color: white;
-}
-
-.inputs-history-title {
-    margin: 12px 0px;
-}
-
-.btn-new-product {
-    margin-left: 6px;
-    border: solid 1px green;
-    height: 30px;
-    width: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-top: 3px;
-    border-radius: 3px;
-    color: green;
-    cursor: pointer;
-}
-
-.btn-new-product:hover {
+.product-detail-modal.show{
+    visibility: visible;
+  }
+  .product-detail-modal .container {
+    margin-top: 100vh;
     transition: 0.4s;
-    background-color: rgba(0, 83, 0, 0.507);
-    color: white;
-    border: solid 1px rgba(0, 83, 0, 0.507);
-    box-shadow: 0px 1px 3px 0px gray;
+  }
+  .product-detail-modal .animation {
+    margin-top: 0;
+  }
+  .product-detail-action.disable {
+    pointer-events: none;
+  }
+  .product-detail-action {
+    user-select: none;
+  }
+.product-color-name, .product-discount-name, .product-description {
+    padding: 20px 0;
 }
-
-.create-input-btn {
-    text-align: center;
-    margin: 12px 0;
+.product-description textarea{
+    margin-top: 10px;
 }
-
-.create-input-btn button {
-    padding: 6px 24px;
-    font-size: 16px;
-    border: solid 1px;
-    border-color: darkgreen;
-    background-color: transparent;
-    border-radius: 5px;
-    color: darkgreen;
-    cursor: pointer;
-    transition: .4s;
+.product-image {
+    overflow: hidden;
 }
-
-.create-input-btn button:hover {
-    background-color: darkgreen;
-    color: white;
+.product-image img {
+    width: auto;
+    height: 100%;
 }
-
-.success-input {
-    color: green;
-    text-align: center;
+.add-product {
+  display: flex;
+  align-content: center;
 }
-
-.d-flex {
-    display: flex;
+.fa-plus {
+  align-content: center;
 }

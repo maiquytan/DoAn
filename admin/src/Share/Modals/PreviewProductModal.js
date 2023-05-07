@@ -45,20 +45,6 @@ export default function PreviewProductModal() {
       setColorSelected(color)
   }
 
-  // const handleAddToCart = () => {
-  //   if (productSelected) {
-  //     const productParams = {
-  //       id: productSelected.id,
-  //       name: previewProduct.name,
-  //       colorProduct: colorSelected,
-  //       size: PRODUCT_CONSTANT.size[productSelected.size],
-  //       price: previewProduct.price,
-  //       quantity: 1
-  //     }
-  //     dispatch(actions.addToCart(productParams))
-  //     handleCloseModal()
-  //   }
-  // }
   return (
     <>
       <div className={`product-detail-modal ${(Object.keys(previewProduct).length > 0) ? 'show' : ''}`}>

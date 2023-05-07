@@ -8,6 +8,11 @@ export const initialState = {
     isFetching: false,
     error: false
   },
+  orders: {
+    allOrder: null,
+    isFetching: false,
+    error: false
+  },
 
   previewProduct: {},
   cart: typeof document !== 'undefined' ? JSON.parse(localStorage.getItem('bibyCart')) || [] : [],
@@ -17,13 +22,17 @@ const slice = createSlice({
   name: 'app',
   initialState,
   reducers: {
-    getAllUser: (state,action) => {
+    getAllUser: (state, action) => {
       state.users.allUser = action.payload;
     },
-    removeUser:(state, action) =>{
+    removeUser: (state, action) => {
       const removeUserID = action.payload;
       state.users.allUser = state.users.allUser.filter(user => user._id !== removeUserID);
-  },
+    },
+    removeOrder: (state, action) => {
+      const removeOrderID = action.payload;
+      state.orders.allUser = state.orders.allUser.filter(order => order._id !== removeOrderID);
+    },
     setPreviewProduct(state, action) {
       state.previewProduct = action.payload
     },
@@ -83,7 +92,7 @@ const slice = createSlice({
 export const { actions } = slice
 
 export const {
-  getUsersStart, getsUsersSuccess, getUsersFailed ,getAllUser, removeUser
+  getUsersStart, getsUsersSuccess, getUsersFailed, getAllUser, removeUser,removeOrder
 } = slice.actions;
 
 export default slice.reducer

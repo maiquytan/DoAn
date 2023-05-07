@@ -8,6 +8,7 @@
 table.admin-table {
     border-spacing: inherit;
     box-shadow: 0px 1px 4px 1px gray;
+    background-color: white;
 }
 
 .admin-th th {

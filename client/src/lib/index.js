@@ -40,9 +40,9 @@ export const getUserInfor = async (params) => {
   }
 }
 
-export const getBaseProduct = async (page) => {
+export const getBaseProduct = async (page, search='') => {
   try {
-    const response = await api.get(`api/product?page=${page}`);
+    const response = await api.get(`api/product?page=${page}&searchText=${encodeURIComponent(search)}`);
     return response.data
   } catch (error) {
     return null
@@ -57,14 +57,14 @@ export const getBlogs = async (page) => {
   }
 }
 
-export const createOrder = async (params, accessToken) => {
+export const createOrders = async (params, accessToken) => {
   try {
     const response = await api.post('api/order/createOrder',JSON.stringify(params),{
       headers: {
         Authorization: `Bearer ${accessToken}`
       },
     });
-
+    console.log(response,"mmmmmmmmm")
     return await response.json();
   } catch (error) {
     return error.response.data || null;
@@ -83,19 +83,11 @@ export const getOrdersUser = async (accessToken) => {
 }
 
 
-export const getSizes = async (params) => {
+export const getOrderDetail = async (_id) => {
   try {
-    const response = await api.get(`/sizes/`);
-    return response.data
-  } catch (error) {
-    return error.response.data || null
-  }
-}
-
-export const getOrderDetail = async (id) => {
-  try {
-    const response = await api.get(`/orders/${id}`);
-    return response.data
+    const response = await api.get(`api/order/${_id}`);
+    console.log(response, "999999999999999999999")
+    return JSON.stringify(response.data)
   } catch (error) {
     console.log(error)
     return error.response.data || null

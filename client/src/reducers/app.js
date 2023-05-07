@@ -138,6 +138,6 @@ const slice = createSlice({
 })
 
 export const { actions } = slice
-export const { loginStart, loginSuccess, loginFailed, registerStart, registerSuccess, registerFailed, getProduct, getBlog, setPreviewProduct, setFavoriteProduct } = slice.actions;
+export const { loginStart, loginSuccess, loginFailed, registerStart, registerSuccess, registerFailed, getProduct, getBlog, setPreviewProduct, setFavoriteProduct,createOrder } = slice.actions;
 
 export default slice.reducer

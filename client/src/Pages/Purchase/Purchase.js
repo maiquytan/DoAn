@@ -4,8 +4,8 @@ import PurchaseProduct from './PurchaseProduct/PurchaseProduct'
 
 import { VIETNAM_PROVINCE } from '../../Constants/detailAdress'
 import { useEffect, useState } from 'react'
-import { createOrder } from '../../lib'
-import { actions } from '../../reducers/app'
+import { createOrders } from '../../lib'
+import { actions, createOrder } from '../../reducers/app'
 
 export default function Purchase() {
 
@@ -54,15 +54,17 @@ export default function Purchase() {
       return { id: item._id, quantity: item.quantity }
     })
     const accessToken = localStorage.getItem("access_token");
+    const user = localStorage.getItem("user");
+    const id = user._id;
     const address = `${(detailAddress || '')}, ${ward?.name}, ${district?.name}, ${province?.name}`
     if (items) {
       const params = {
+        id,
         address,
         items,
       }
       const sendResquest = async () => {
-        const response = await createOrder(params, accessToken)
-        dispatch(createOrder(params))
+        const response = await createOrders(params, accessToken)
       }
       sendResquest()
     }
@@ -192,8 +194,8 @@ export default function Purchase() {
                 {showConfirmDialog && (
                   isLoading === false ? (
                     <div className="confirm-dialog">
-                      <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                      <span class="sr-only">Loading...</span>
+                      <i className="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                      <span className="sr-only">Loading...</span>
                       <h3> Bạn có chắc chắn muốn mua hàng</h3>
                       <div>
                         <button className="confirm-dialog-button" onClick={handleConfirm}>
@@ -207,7 +209,7 @@ export default function Purchase() {
                   ) : (
                     <div className="confirm-dialog">
                       <div className="img-cofirm">
-                      <i className="fa fa-check-circle fa-5x" aria-hidden="true"></i>
+                        <i className="fa fa-check-circle fa-5x" aria-hidden="true"></i>
                       </div>
                       <h2>Đặt hàng thành công</h2>
                       <p>Cảm ơn đã tin tưởng và đặt hàng sản phẩm của chúng tôi, bạn vui lòng check lại gmail, và chúng tôi sẽ liên hệ lại với bạn </p>
